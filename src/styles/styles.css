@@ -332,6 +332,7 @@ h6 {
   cursor: pointer;
   font-family: var(--font-segoe-mdl2);
   font-size: 16px;
+  user-select: none;
 }
 
 .title-bar__button:hover {
