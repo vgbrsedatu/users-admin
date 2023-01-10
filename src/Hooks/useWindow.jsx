@@ -14,9 +14,10 @@ import { useEffect, useState } from 'react';
  * @typedef {Object} WindowResponse
  * @property {boolean} maximize - If the window state is maximized, Default value is `false`.
  * @property {boolean} fullScreen - If the window state is fullscreened, Default value is `false`.
- * @property {function():void} closeWindow - A function that sends a signal to ipcMain to close the window.
- * @property {function():void} minimizeWindow - A function that sends a signal to ipcMain to minimize the window.
- * @property {function():void} maximizeWindow - A function that sends a signal to ipcMain to maximize the window.
+ * @property {() => void} closeWindow - A function that sends a signal to ipcMain to close the window.
+ * @property {() => void} minimizeWindow - A function that sends a signal to ipcMain to minimize the window.
+ * @property {() => void} maximizeWindow - A function that sends a signal to ipcMain to maximize the window.
+ * @property {(view:string) => void} openWindow - A function that sends a signal to ipcMain to open a Window.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
