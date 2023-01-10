@@ -8,11 +8,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-// » IMPORT APP COMPONENT
-import App from './App';
-
 // » IMPORT CSS STYLES
 import './styles/styles.css';
+
+// » IMPORT APP COMPONENT
+import App from './App';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
