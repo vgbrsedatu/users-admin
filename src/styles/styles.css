@@ -311,7 +311,7 @@ h6 {
   font-size: 16px;
 }
 
-.title-bar__menu {
+.title-bar__windows-control {
   display: flex;
   flex-flow: row nowrap;
   gap: 2px;
