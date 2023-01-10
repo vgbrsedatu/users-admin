@@ -279,7 +279,7 @@ h6 {
   word-wrap: normal;
 }
 
-.title-bar {
+.titlebar {
   display: flex;
   flex: 0 1 auto;
   flex-flow: row nowrap;
@@ -291,14 +291,18 @@ h6 {
   user-select: none;
 }
 
-.title-bar__app-name {
+.titlebar.titlebar--nodrag {
+  -webkit-app-region: no-drag;
+}
+
+.titlebar__app-name {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   gap: 10px;
 }
 
-.title-bar__app-name > span {
+.titlebar__app-name > span {
   display: flex;
   width: 46px;
   height: 32px;
@@ -311,13 +315,13 @@ h6 {
   font-size: 16px;
 }
 
-.title-bar__windows-control {
+.titlebar__windows-control {
   display: flex;
   flex-flow: row nowrap;
   gap: 2px;
 }
 
-.title-bar__button {
+.titlebar__button {
   display: flex;
   width: 46px;
   height: 32px;
@@ -335,12 +339,29 @@ h6 {
   user-select: none;
 }
 
-.title-bar__button:hover {
+.titlebar__button:hover {
   background-color: #3C3D3A;
 }
 
-.title-bar__button--close:hover {
+.titlebar__button--close:hover {
   background-color: #DD2E2E;
+}
+
+.modal {
+  position: absolute;
+  top: calc(50%);
+  left: calc(50%);
+  display: flex;
+  width: 300px;
+  height: 200px;
+  flex-flow: column;
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface-variant);
+}
+
+.modal_container {
+  flex: 1 1 auto;
+  padding: 5px;
 }
 
 .version {
