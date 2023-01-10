@@ -1,0 +1,63 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".husky": true,
+    ".github": true,
+    "node_modules": true,
+    /**
+    ".editorconfig": true,
+    ".eslintrc": true,
+    ".eslintrc.json": true,
+    ".eslintignore": true,
+    ".gitignore": true,
+    ".gitattributes": true,
+    ".huskyrc": true,
+    ".lintstagedrc": true,
+    ".prettierignore": true,
+    ".prettierrc": true,
+    ".prettierrc.json": true,
+    "commitlint.config.js": true,
+    ".stylelintrc": true,
+    "LICENSE": true,
+    "LICENSE.md": true,
+    "package-lock.json": true,
+    "yarn.lock": true,
+    "README.md": true,
+    /**/
+  },
+  "files.associations": {
+    ".babelrc": "jsonc",
+    ".eslintrc": "jsonc",
+    ".eslintrc.json": "jsonc",
+    ".prettierrc": "jsonc",
+    ".stylelintrc": "json",
+    ".eslintignore": "ignore",
+    ".prettierignore": "ignore",
+    ".gitignore": "ignore",
+    ".gitkeep": "markdown",
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/bazel-out": true,
+    "**/dist": true
+  },
+  "[markdown]": {
+    "editor.renderWhitespace": "all",
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.parameterHints.enabled": true,
+    "editor.quickSuggestions": {
+      "comments": "inline",
+      "strings": "inline",
+      "other": "inline",
+    },
+    "editor.snippetSuggestions": "inline"
+  },
+  "commentTranslate.targetLanguage": "en",
+  "commentTranslate.multiLineMerge": true,
+}
