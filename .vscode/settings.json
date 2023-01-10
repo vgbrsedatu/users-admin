@@ -22,12 +22,14 @@
     ".prettierrc": true,
     ".prettierrc.json": true,
     "commitlint.config.js": true,
+    "forge.config.js": true,
     ".stylelintrc": true,
     "LICENSE": true,
     "LICENSE.md": true,
     "package-lock.json": true,
     "yarn.lock": true,
     "README.md": true,
+    "vite.config.js": true,
     /**/
   },
   "files.associations": {
