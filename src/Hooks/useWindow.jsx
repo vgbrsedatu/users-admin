@@ -34,9 +34,9 @@ const useWindow = () => {
     const handler = (event, payload) => {
       setMaximize(payload);
     };
-    window.appRuntime.subscribe('window-maximize:reply', handler);
+    window.appRuntime.subscribe('window-maximize', handler);
     return () => {
-      window.appRuntime.remove('window-maximize:reply', handler);
+      window.appRuntime.remove('window-maximize', handler);
     };
   }, []);
 
@@ -44,9 +44,9 @@ const useWindow = () => {
     const handler = (event, payload) => {
       setFullScreen(payload);
     };
-    window.appRuntime.subscribe('window-fullscreen:reply', handler);
+    window.appRuntime.subscribe('window-fullscreen', handler);
     return () => {
-      window.appRuntime.remove('window-fullscreen:reply', handler);
+      window.appRuntime.remove('window-fullscreen', handler);
     };
   }, []);
 
