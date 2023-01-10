@@ -63,7 +63,11 @@ const useWindow = () => {
     window.appRuntime.send('window-maximize');
   };
 
-  return { maximize, fullScreen, closeWindow, minimizeWindow, maximizeWindow };
+  const openWindow = view => {
+    window.appRuntime.send('window-open', view);
+  };
+
+  return { maximize, fullScreen, closeWindow, minimizeWindow, maximizeWindow, openWindow };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
