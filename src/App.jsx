@@ -4,6 +4,9 @@
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT REACT MODULES
+import { HashRouter as Router } from 'react-router-dom';
+
 // » IMPORT COMPONENTS
 import Layout from './Components/Layout';
 
@@ -15,7 +18,11 @@ import Layout from './Components/Layout';
  * @component
  * @returns {JSX.Element} The `App` components.
  */
-const App = () => <Layout />;
+const App = () => (
+  <Router>
+    <Layout />
+  </Router>
+);
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export default App;
