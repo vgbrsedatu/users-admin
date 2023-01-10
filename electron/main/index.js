@@ -78,9 +78,9 @@ const createWindow = () => {
   const window = new BrowserWindow({
     width: 850,
     height: 650,
-    minWidth: 800,
-    minHeight: 600,
-    resizable: false,
+    minWidth: 850,
+    minHeight: 650,
+    resizable: true,
     frame: false,
     titleBarStyle: 'hidden',
     title: app.getName(),
@@ -111,6 +111,12 @@ const createWindow = () => {
   window.once('ready-to-show', () => {
     window.show();
   });
+
+  window.on('enter-full-screen', () => window.webContents.send('window-fullscreen', true));
+  window.on('leave-full-screen', () => window.webContents.send('window-fullscreen', false));
+  window.on('maximize', () => window.webContents.send('window-maximize', true));
+  window.on('unmaximize', () => window.webContents.send('window-maximize', false));
+
   return window;
 };
 
@@ -356,6 +362,15 @@ ipcMain.on('opacity', (event, opacity) => {
  */
 ipcMain.on('window-minimize', event => {
   BrowserWindow.fromId(event.sender.id).minimize();
+});
+
+ipcMain.on('window-maximize', event => {
+  const sender = BrowserWindow.fromId(event.sender.id);
+  if (sender.isMaximized()) {
+    sender.restore();
+  } else {
+    sender.maximize();
+  }
 });
 
 /**
