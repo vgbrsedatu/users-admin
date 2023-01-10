@@ -9,7 +9,7 @@
     ".husky": true,
     ".github": true,
     "node_modules": true,
-    /**
+    /**/
     ".editorconfig": true,
     ".eslintrc": true,
     ".eslintrc.json": true,
