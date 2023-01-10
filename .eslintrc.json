@@ -1,0 +1,58 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "prettier",
+    "react-hooks",
+    "jsx-a11y"
+  ],
+  "overrides": [],
+  "parser": "",
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "rules": {
+    // » GENERAL
+    "strict": [2,"global"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-param-reassign": ["error", { "props": false }],
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": [ "error", {
+      "devDependencies": [
+        "**/*.jsx",
+        "configurations/forge/makers/*.js",
+        "configurations/forge/publisher/*.js",
+        "tools/**/*.js",
+        "test/**/*.js",
+        "electron/main/index.js",
+        "electron/preload/index.js",
+        "electron/system/**/*.js",
+        "forge.config.js",
+        "vite.config.js"
+      ]}
+    ],
+    // » PRETTIER
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "printWidth": 100,
+      "trailingComma": "all"
+    }],
+    // » REACT
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-props-no-spreading": [0, { "html": "enforce", "custom": "ignore", "exceptions": ["img"] }],
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    // » REACT HOOKS
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}

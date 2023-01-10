@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-idiomatic-order"
+  ],
+  "rules": {
+    "color-hex-length": "long",
+    "color-hex-case": "upper",
+    "selector-class-pattern": null,
+    "color-function-notation": "legacy",
+    "alpha-value-notation": "number"
+  }
+}
