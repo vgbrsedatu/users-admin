@@ -1,20 +1,11 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Main file to export all electron system to main proccess.
+ * @file Manage main window settings.
  */
-
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-import * as dialog from './dialog';
-import * as file from './file';
-import * as menu from './menu';
-import notification from './notification';
-import tray from './tray';
-import * as window from './window';
+import main from './main';
+import modal from './modal';
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export { dialog };
-export { file };
-export { menu };
-export { notification };
-export { tray };
-export { window };
+export { main };
+export { modal };
