@@ -8,9 +8,8 @@
 import React from 'react';
 
 // » IMPORT COMPONENTS
-import Footer from './Footer';
-import Header from './Header';
-import Main from './Main';
+import TitleBar from './TitleBar';
+import Router from '../../Routes/Router';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -20,10 +19,9 @@ import Main from './Main';
  * @returns {JSX.Element} The `Layout` components.
  */
 const Layout = () => (
-  <React.Fragment key="outer-wrapper">
-    <Header />
-    <Main />
-    <Footer />
+  <React.Fragment key="Layout">
+    <TitleBar />
+    <Router />
   </React.Fragment>
 );
 
