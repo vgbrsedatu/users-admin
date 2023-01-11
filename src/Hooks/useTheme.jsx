@@ -43,7 +43,7 @@ const useTheme = () => {
     };
     window.appRuntime.subscribe('theme:toggle.reply', handleEvent);
     return () => {
-      window.appRuntime.remove('theme:toggle.reply', handleEvent);
+      window.appRuntime.removeAll('theme:toggle.reply');
     };
   }, [setTheme]);
 
@@ -53,7 +53,7 @@ const useTheme = () => {
     };
     window.appRuntime.subscribe('theme:choose.reply', handleEvent);
     return () => {
-      window.appRuntime.remove('theme:choose.reply', handleEvent);
+      window.appRuntime.removeAll('theme:choose.reply');
     };
   }, [setTheme]);
 

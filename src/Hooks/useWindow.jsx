@@ -37,7 +37,7 @@ const useWindow = () => {
     };
     window.appRuntime.subscribe('window-maximize', handler);
     return () => {
-      window.appRuntime.remove('window-maximize', handler);
+      window.appRuntime.removeAll('window-maximize');
     };
   }, []);
 
@@ -47,7 +47,7 @@ const useWindow = () => {
     };
     window.appRuntime.subscribe('window-fullscreen', handler);
     return () => {
-      window.appRuntime.remove('window-fullscreen', handler);
+      window.appRuntime.removeAll('window-fullscreen');
     };
   }, []);
 
