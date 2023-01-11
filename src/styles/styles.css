@@ -234,6 +234,14 @@ h6 {
   gap: 10px;
 }
 
+#titlebar {
+  flex: 0 1 auto;
+}
+
+#container {
+  flex: 1 1 auto;
+}
+
 #header-wrapper {
   flex: 0 1 auto;
 }
