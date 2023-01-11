@@ -60,6 +60,13 @@ const WINDOW_URL = ON_DEVELOPMENT
       slashes: true,
     });
 
+const windowSetting = {
+  icon: icons.app,
+  title: app.getName(),
+  preload: PRELOAD_PATH,
+  loadFile: WINDOW_URL,
+};
+
 // ━━ FOR DEVELOPMENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -159,7 +166,7 @@ app.whenReady().then(() => {
     icon: icons.app,
     menu: system.menu.context(app),
   });
-  createWindow();
+  system.window.main(windowSetting);
   app.on('activate', () => {
     // » On macOS it's common to re-create a window in the app when the
     // » dock icon is clicked and there are no other windows open.
@@ -351,7 +358,8 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
  *
  */
 ipcMain.on('opacity', (event, opacity) => {
-  BrowserWindow.fromId(event.sender.id).setOpacity(opacity);
+  const sender = BrowserWindow.fromWebContents(event.sender);
+  sender.setOpacity(opacity);
 });
 
 /**
@@ -361,11 +369,12 @@ ipcMain.on('opacity', (event, opacity) => {
  * @listens ipcMain#window-minimize
  */
 ipcMain.on('window-minimize', event => {
-  BrowserWindow.fromId(event.sender.id).minimize();
+  const sender = BrowserWindow.fromWebContents(event.sender);
+  sender.minimize();
 });
 
 ipcMain.on('window-maximize', event => {
-  const sender = BrowserWindow.fromId(event.sender.id);
+  const sender = BrowserWindow.fromWebContents(event.sender);
   if (sender.isMaximized()) {
     sender.restore();
   } else {
@@ -380,7 +389,19 @@ ipcMain.on('window-maximize', event => {
  * @listens ipcMain#owindow-close
  */
 ipcMain.on('window-close', event => {
-  BrowserWindow.fromId(event.sender.id).close();
+  const sender = BrowserWindow.fromWebContents(event.sender);
+  sender.close();
+});
+
+/**
+ * Listen to `window-close` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#owindow-close
+ */
+ipcMain.on('window-open', (event, view) => {
+  const sender = BrowserWindow.fromWebContents(event.sender);
+  system.window.modal({ ...windowSetting, view, parent: sender });
 });
 
 /**
