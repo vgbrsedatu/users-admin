@@ -144,9 +144,7 @@
   }
 }
 
-/**
-  * RESET CSS
-  */
+/* ━━ RESET CSS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 *,
 *::before,
 *::after {
@@ -182,13 +180,9 @@ table {
   border-spacing: 0;
 }
 
-/**
-* GENERAL
-*/
+/* ━━ HTML ELEMENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 body {
   display: flex;
-  height: 100vh;
-  flex-flow: column;
   border-radius: 15px;
   background-color: var(--color-background);
   color: var(--color-on-background);
@@ -231,11 +225,10 @@ h6 {
   font-weight: 400;
 }
 
-/**
- * ID STYLES
- */
+/* ━━ ID STYLES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #root {
   display: flex;
+  height: 100vh;
   flex: 1 1 100%;
   flex-flow: column nowrap;
   gap: 10px;
@@ -261,9 +254,7 @@ h6 {
   font-weight: 300;
 }
 
-/**
- * CLASS STYLES
- */
+/* ━━ CLASS STYLES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .material-icons {
   display: inline-block;
   direction: ltr;
