@@ -7,11 +7,9 @@
 // » IMPORT REACT MODULES
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { useLocation } from 'react-router-dom';
 
 // » IMPORT CUSTOM HOOKS
 import useWindow from '../../Hooks/useWindow';
-import useAbout from '../../Hooks/useAbout';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -210,21 +208,13 @@ MainControl.propTypes = {
  * @component
  * @returns {JSX.Element} The `TitleBar` components.
  */
-const TitleBar = () => {
-  const location = useLocation();
-  const about = useAbout();
+const TitleBar = ({ onModal, title }) => {
   const { maximize, fullScreen, minimizeWindow, maximizeWindow, closeWindow } = useWindow();
-  const titles = {
-    about: 'About',
-  };
-  const modals = Object.keys(titles);
-  const path = location.pathname.slice(1);
-  const onModal = modals.includes(path);
-  const title = onModal ? titles[path] : about?.name;
 
   if (fullScreen) {
     return null;
   }
+
   return (
     <div id="titlebar" className="titlebar">
       <AppName title={title} />
@@ -239,6 +229,11 @@ const TitleBar = () => {
       />
     </div>
   );
+};
+
+TitleBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  onModal: PropTypes.bool.isRequired,
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
