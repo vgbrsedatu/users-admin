@@ -8,7 +8,7 @@ import { PropTypes } from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // » IMPORT CUSTOM HOOKS
-import { useUsers } from '../../Context/UsersContext';
+import useUsers from '../../Hooks/useUsers';
 
 // » IMPORT COMPONENTS
 import Loading from '../../Components/Loading';
