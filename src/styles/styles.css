@@ -151,10 +151,6 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font: inherit;
-  font-size: 100%;
-  line-height: 1;
-  vertical-align: baseline;
 }
 
 ol,
@@ -181,13 +177,19 @@ table {
 }
 
 /* ━━ HTML ELEMENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+html {
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
 body {
-  display: flex;
-  border-radius: 15px;
   background-color: var(--color-background);
   color: var(--color-on-background);
   font-family: var(--font-segoe-ui);
-  font-size: 16px;
+  font-size: 1em;
+  line-height: 1.5rem;
   transition: 0.3s ease all;
 }
 
@@ -229,9 +231,10 @@ h6 {
 #root {
   display: flex;
   height: 100vh;
-  flex: 1 1 100%;
   flex-flow: column nowrap;
-  gap: 10px;
+  gap: 15px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #titlebar {
@@ -239,8 +242,59 @@ h6 {
 }
 
 #container {
-  flex: 1 1 auto;
+  display: grid;
+  height: 600px;
+  max-height: 600px;
+  flex: 1 1 600px;
+  padding: 15px;
+  grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(18, 1fr);
 }
+
+#navigation {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  grid-column: 2 / span 22;
+  grid-row: 1 / span 1;
+}
+
+#navigation > div a {
+  color: var(--color-on-background);
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+#navigation > div a:hover {
+  color: var(--color-secondary);
+}
+
+#navigation > div a.active {
+  color: rgba(255, 255, 255, 0.87);
+  pointer-events: none;
+}
+
+#navigation > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 15px;
+}
+
+#view {
+  display: flex;
+  flex-flow: column nowrap;
+  grid-column: 2 / span 22;
+  grid-row: 3 / span 15;
+}
+
+/* #view {
+  display: grid;
+  height: 600px;
+  max-height: 600px;
+  flex: 1 1 auto;
+  justify-content: center;
+
+} */
 
 #header-wrapper {
   flex: 0 1 auto;
@@ -304,7 +358,7 @@ h6 {
 .titlebar__app-name > span {
   display: flex;
   width: 46px;
-  height: 32px;
+  height: 35px;
   flex-flow: row;
   align-items: center;
   justify-content: center;
@@ -323,7 +377,7 @@ h6 {
 .titlebar__button {
   display: flex;
   width: 46px;
-  height: 32px;
+  height: 35px;
   flex-flow: row;
   align-items: center;
   justify-content: center;
@@ -361,6 +415,24 @@ h6 {
 .modal_container {
   flex: 1 1 auto;
   padding: 5px;
+}
+
+.surface {
+  display: flex;
+  height: fill-available;
+  height: -webkit-fill-available;
+  flex-flow: column;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface-variant);
+}
+
+.surface__body {
+  display: flex;
+  flex: 0 1 auto;
+  flex-flow: column nowrap;
+  overflow-y: auto;
 }
 
 .version {
@@ -527,6 +599,18 @@ h6 {
   color: var(--color-on-primary);
 }
 
+.btn-icon {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  align-items: center;
+  border-style: none;
+  border-radius: 50%;
+  background-color: unset;
+  cursor: pointer;
+  place-content: center;
+}
+
 input[type="range"] {
   height: 7px;
   border-radius: 10px;
@@ -553,4 +637,63 @@ input[type="range"]::-webkit-slider-runnable-track {
   appearance: none;
   background: transparent;
   box-shadow: none;
+}
+
+.profile {
+  display: flex;
+  height: fill-available;
+  height: -webkit-fill-available;
+  flex-flow: row nowrap;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface-variant);
+}
+
+.profile__image,
+.profile__information {
+  background-color: #535bf2;
+}
+
+.profile__information {
+  flex: 1 1 auto;
+}
+
+.profile__image {
+	padding: 15px;
+	border-radius: 15px;
+	background-color: #1a1a1a;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+}
+
+.profile__information {
+	padding: 15px;
+	border-radius: 15px;
+	background-color: #1a1a1a;
+}
+
+.profile__image img {
+  width: 250px;
+  height: auto;
+  border-radius: 50%;
+}
+
+
+.profile__data {
+	display: grid;
+	grid-template-columns: minmax(100px, max-content) auto;
+	gap: 10px 10px;
+  overflow-y: scroll;
+	max-height: 230px;
+}
+
+.profile__data span:nth-child(odd) {
+  text-align: right;
+}
+.profile__data span:nth-child(even) {
+  background-color:#242424;
+  padding-left: 15px;
+	border-radius: 10px;
 }
