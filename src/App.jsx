@@ -8,6 +8,7 @@
 import { HashRouter as Router } from 'react-router-dom';
 
 // » IMPORT COMPONENTS
+import AuthProvider from './Context/AuthContext';
 import Layout from './Components/Layout';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -20,7 +21,9 @@ import Layout from './Components/Layout';
  */
 const App = () => (
   <Router>
-    <Layout />
+    <AuthProvider>
+      <Layout />
+    </AuthProvider>
   </Router>
 );
 
