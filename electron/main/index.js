@@ -68,6 +68,9 @@ const windowSetting = {
 };
 
 // ━━ FOR DEVELOPMENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+if (ON_DEVELOPMENT) {
+  process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+}
 // ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The`createWindow()` function create and control browser windows.
