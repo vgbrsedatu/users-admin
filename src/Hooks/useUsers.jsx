@@ -48,10 +48,9 @@ import { getUsers } from '../services/firebase/api/users';
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The `useOpacity` it's a custom React hook witch communicates with the
- * `electron` api, used to manages opacity state.
+ * The `useUsers` it's a custom React hook witch communicates firebase api.
  *
- * @returns {UsersResponse} An object to manage the opacity state.
+ * @returns {UsersResponse} An object to manage the users colecction.
  */
 const useUsers = () => {
   const [users, setUsers] = useState();
