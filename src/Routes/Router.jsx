@@ -5,15 +5,77 @@
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT REACT MODULES
-import { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // » IMPORT APP COMPONENT
-import About from '../Views/About';
-import Dasboard from '../Views/Dasboard';
-import Home from '../Views/Home';
+import Protected from './Protected';
+import AddUser from '../Views/AddUser';
+import EditUser from '../Views/EditUser';
+import User from '../Views/User';
+import Users from '../Views/Users';
+import Signin from '../Views/Signin';
 
-// ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ━━ COMPONENTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/**
+ * The `AddUserProtected` component, is a view component protected by the
+ * router.
+ *
+ * It must be used in the router: `path="add"`
+ *
+ * @component
+ * @returns {JSX.Element} The `AddUserProtected` components.
+ */
+const AddUserProtected = () => (
+  <Protected>
+    <AddUser />
+  </Protected>
+);
+
+/**
+ * The `EditUserProtected` component, is a view component protected by the
+ * router.
+ *
+ * It must be used in the router: `path="edit"`
+ *
+ * @component
+ * @returns {JSX.Element} The `EditUserProtected` components.
+ */
+const EditUserProtected = () => (
+  <Protected>
+    <EditUser />
+  </Protected>
+);
+
+/**
+ * The `UserProtected` component, is a view component protected by the
+ * router.
+ *
+ * It must be used in the router: `path="user"`
+ *
+ * @component
+ * @returns {JSX.Element} The `UserProtected` components.
+ */
+const UserProtected = () => (
+  <Protected>
+    <User />
+  </Protected>
+);
+
+/**
+ * The `UsersProtected` component, is a view component protected by the
+ * router.
+ *
+ * It must be used in the router: `path="/"`
+ *
+ * @component
+ * @returns {JSX.Element} The `UsersProtected` components.
+ */
+const UsersProtected = () => (
+  <Protected>
+    <Users />
+  </Protected>
+);
+
 /**
  * The `Router` component, is in charge of routing the application.
  *
@@ -21,13 +83,15 @@ import Home from '../Views/Home';
  * @returns {JSX.Element} The `Router` components.
  */
 const Router = () => (
-  <Fragment key="router">
+  <section id="view">
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="dasboard" element={<Dasboard />} />
+      <Route path="/" element={<UsersProtected />} />
+      <Route path="add" element={<AddUserProtected />} />
+      <Route path="edit" element={<EditUserProtected />} />
+      <Route path="user/:id" element={<UserProtected />} />
+      <Route path="signin" element={<Signin />} />
     </Routes>
-  </Fragment>
+  </section>
 );
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
