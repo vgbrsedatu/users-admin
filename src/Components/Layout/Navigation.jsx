@@ -6,7 +6,11 @@
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT COMPONENTS
 import { NavLink } from 'react-router-dom';
+
+// » IMPORT CONSUMERS CONTEXT
 import { useSignout } from '../../Context/AuthContext';
+
+// » IMPORT CUSTOM HOOKS
 import useTheme from '../../Hooks/useTheme';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
