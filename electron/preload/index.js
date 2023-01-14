@@ -12,35 +12,6 @@ import { contextBridge, ipcRenderer } from 'electron';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The `about` constant, contains information about the application, such as
- * developers or description.
- *
- * @constant {object} about
- */
-const about = {
-  name: 'Electron app',
-  description: 'Starter template for electron project',
-  team: 'BRSoft Electron',
-  company: 'BRSoft',
-  copyright: 'BRSoft© 2014-2020',
-  version: '1.0.0',
-  author: 'Victor G. Beltrán Rodríguez',
-};
-
-/**
- * The `versions` constant, contains information about the versions of the
- * application.
- *
- * @constant {object} versions
- */
-const versions = {
-  chrome: process.versions.chrome,
-  node: process.versions.node,
-  electron: process.versions.electron,
-  v8: process.versions.v8,
-};
-
-/**
  * The `apiKey` constant, it's the key to inject the API onto `window` with. The
  * API will be accessible on `window[apiKey]`.
  *
@@ -57,8 +28,6 @@ const apiKey = 'appRuntime';
  * @constant {object} api
  */
 const api = {
-  about,
-  versions,
   send: (channel, payload) => ipcRenderer.send(channel, payload),
   sendSync: (channel, payload) => ipcRenderer.sendSync(channel, payload),
   invoke: (channel, listener) => ipcRenderer.invoke(channel, listener),
