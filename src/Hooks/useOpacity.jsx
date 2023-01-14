@@ -14,8 +14,8 @@ import useStorage from './useStorage';
 /**
  * The returns value from `useOpacity`
  *
- * @typedef   {object}    OpacityResponse
- * @property  {number}    opacity         - The `opacity` value.
+ * @typedef   {object}                  OpacityResponse
+ * @property  {number}                  opacity         - The `opacity` value.
  * @property  {(value:string) => void}  changeOpacity   - A function to change `opacity` state.
  */
 
