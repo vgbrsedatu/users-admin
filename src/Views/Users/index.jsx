@@ -31,7 +31,11 @@ const roles = {
  * @component
  * @returns {JSX.Element} The `Users` components.
  */
-const ToProfile = ({ id, label }) => <NavLink to={`/user/:${id}`}>{label}</NavLink>;
+const ToProfile = ({ id, label }) => (
+  <NavLink to={`/user/:${id}`} state={id}>
+    {label}
+  </NavLink>
+);
 
 ToProfile.propTypes = {
   id: PropTypes.string.isRequired,
