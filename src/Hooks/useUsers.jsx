@@ -53,7 +53,7 @@ import { getUsers } from '../services/firebase/api/users';
  * @returns {UsersResponse} An object to manage the users colecction.
  */
 const useUsers = () => {
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
