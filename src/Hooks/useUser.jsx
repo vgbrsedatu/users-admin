@@ -1,6 +1,6 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Contains `useOpacity` a custom React Hook.
+ * @file Contains `useUser` a custom React Hook.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -40,7 +40,7 @@ import { getUser } from '../services/firebase/api/users';
 /**
  * The returns value from `useUser`
  *
- * @typedef   {object}        UserResponse
+ * @typedef   {User}        UserResponse
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
