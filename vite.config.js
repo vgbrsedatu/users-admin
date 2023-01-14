@@ -58,7 +58,13 @@ const viteConfiguration = defineConfig({
       plugins: [
         customStart(plugins.customStart),
         loadViteEnv(),
-        copy([{ from: 'assets/icons/*', to: 'distribution/assets/icons/' }]),
+        copy([
+          { from: 'assets/icons/*', to: 'distribution/assets/icons/' },
+          {
+            from: 'electron/addons/Firebase/app/service-account.json',
+            to: 'distribution/electron/addons/Firebase/app/service-account.json',
+          },
+        ]),
       ],
     }),
     renderer({
