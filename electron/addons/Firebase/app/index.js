@@ -4,17 +4,17 @@
  */
 
 // ━━	IMPORT MODULES	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/// » IMPORT THIRD PARTIES MODULES
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
-
 import serviceAccount from './service-account.json';
 
 // ━━	CONSTANTS	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
- *
+ * Object to configure the firebase application.
  *
  * @constant {object} options
  */
@@ -26,7 +26,7 @@ const options = {
 
 // ━━	MODULE	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- *
+ * Firebase application.
  *
  * @constant {App} options
  */

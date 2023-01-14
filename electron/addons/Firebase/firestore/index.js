@@ -5,7 +5,7 @@
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT THIRD PARTIES MODULES
-import { firestore } from './app';
+import { firestore } from '../app';
 
 const users = firestore.collection('users');
 
