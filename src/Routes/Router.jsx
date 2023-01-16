@@ -88,7 +88,7 @@ const Router = () => (
       <Route path="/" element={<UsersProtected />} />
       <Route path="add" element={<AddUserProtected />} />
       <Route path="edit" element={<EditUserProtected />} />
-      <Route path="user/:id" element={<UserProtected />} />
+      <Route path="user" element={<UserProtected />} />
       <Route path="signin" element={<Signin />} />
     </Routes>
   </section>
