@@ -3,8 +3,10 @@
  * @file Manage `User` React component view.
  */
 
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../Components/Loading';
+import useDeleteUser from '../../Hooks/useDeleteUser';
 import useUser from '../../Hooks/useUser';
 
 const roles = {
@@ -15,6 +17,7 @@ const roles = {
   contributor: 'Colaborador',
   subscriber: 'Suscriptor',
 };
+
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `User` react component view.
@@ -23,20 +26,32 @@ const roles = {
  * @returns {JSX.Element} The `User` components.
  */
 const User = () => {
-  const { id } = useParams();
-  const { user, loading } = useUser(id);
+  const { state } = useLocation();
+  const { user, loading } = useUser(state);
+  const navigate = useNavigate();
+  const { success, error, deleteUser } = useDeleteUser();
+  useEffect(() => {
+    if (success) {
+      navigate('/');
+    }
+  }, [success, navigate]);
+
   if (loading) {
     return <Loading />;
   }
 
+  const onClick = id => {
+    navigate('/edit', { state: id });
+  };
+
   return (
-    <article className="profile">
+    <article id="user" className="profile">
       <figure className="profile__image">
         <img alt="user profile" src={user.photo} />
-        <figcaption>{user.name}</figcaption>
+        {error && <span>{error}</span>}
       </figure>
       <div className="profile__information">
-        <h1 className="profile__name">Informacion del usuario</h1>
+        <h1 className="profile__title">Informacion del usuario</h1>
         <div className="profile__data">
           <span>Nombre:</span>
           <span>{user.name}</span>
@@ -68,16 +83,18 @@ const User = () => {
           <span>{user.address.postal}</span>
           <span>Municipio:</span>
           <span>{user.address.municipality}</span>
-          {user.address.locality ? (
-            <>
-              <span>Localidad:</span>
-              <span>{user.address.locality}</span>
-            </>
-          ) : (
-            ''
-          )}
+          <span>Localidad:</span>
+          <span>{user.address.locality ? user.address.locality : null}</span>
           <span>Estado:</span>
           <span>{user.address.state}</span>
+        </div>
+        <div className="profile__controls">
+          <button type="button" className="btn btn--primary" onClick={() => deleteUser(user.id)}>
+            Eliminar Perfil
+          </button>
+          <button type="button" className="btn btn--primary" onClick={() => onClick(user.id)}>
+            Editar Perfil
+          </button>
         </div>
       </div>
     </article>

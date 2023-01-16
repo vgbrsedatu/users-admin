@@ -4,8 +4,7 @@
  */
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT REACT MODULES
-import { PropTypes } from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // » IMPORT CUSTOM HOOKS
 import useUsers from '../../Hooks/useUsers';
@@ -31,42 +30,30 @@ const roles = {
  * @component
  * @returns {JSX.Element} The `Users` components.
  */
-const ToProfile = ({ id, label }) => (
-  <NavLink to={`/user/:${id}`} state={id}>
-    {label}
-  </NavLink>
-);
-
-ToProfile.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-};
-
-/**
- * The `Users` react component view.
- *
- * @component
- * @returns {JSX.Element} The `Users` components.
- */
 const Users = () => {
   const { users, loading } = useUsers();
+  const navigate = useNavigate();
 
   if (loading) {
     return <Loading />;
   }
 
+  const toProfile = id => {
+    navigate('/user', { state: id });
+  };
+
   return (
-    <article className="surface">
-      <h1 className="surface__title">Users</h1>
+    <article id="users" className="surface">
+      <h1 className="surface__title">Lista de usuarios {users.length}</h1>
       <div className="surface__body">
-        <table>
+        <table className="users">
           <thead>
             <tr>
               <th>Nombre</th>
               <th>Role</th>
               <th>Verificado</th>
               <th>Activo</th>
-              <th>Editar</th>
+              <th>Perfil</th>
             </tr>
           </thead>
           <tbody>
@@ -74,10 +61,12 @@ const Users = () => {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{roles[user.role]}</td>
-                <td>{user.verified ? 'Si' : 'No'}</td>
-                <td>{user.disabled ? 'No' : 'Si'}</td>
-                <td>
-                  <ToProfile id={user.id} label="Editar" />
+                <td className="center">{user.verified ? 'Si' : 'No'}</td>
+                <td className="center">{user.disabled ? 'No' : 'Si'}</td>
+                <td className="center">
+                  <button type="button" className="btn-icon" onClick={() => toProfile(user.id)}>
+                    <i className="material-icons">person</i>
+                  </button>
                 </td>
               </tr>
             ))}

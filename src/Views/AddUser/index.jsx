@@ -11,7 +11,7 @@
  * @returns {JSX.Element} The `AddUser` components.
  */
 const AddUser = () => (
-  <article className="surface">
+  <article id="add-users" className="surface">
     <h1 className="surface__title">Crear usuario</h1>
     <div className="surface__body">
       <p>

@@ -39,11 +39,11 @@ const Signin = () => {
   }
 
   return (
-    <article className="surface">
+    <article id="signin" className="surface">
       <form className="signup">
         <fieldset>
           <legend>Signup</legend>
-          <label htmlFor="email">
+          <label className="form-group" htmlFor="email">
             <span>Correo:</span>
             <input
               type="text"
@@ -56,7 +56,7 @@ const Signin = () => {
               }}
             />
           </label>
-          <label htmlFor="password">
+          <label className="form-group" htmlFor="password">
             <span>Contraseña:</span>
             <input
               type="password"
@@ -69,9 +69,11 @@ const Signin = () => {
               }}
             />
           </label>
-          <button className="btn" type="button" onClick={onClick}>
-            Enviar
-          </button>
+          <div className="form-group">
+            <button className="btn btn--primary" type="button" onClick={onClick}>
+              Enviar
+            </button>
+          </div>
         </fieldset>
       </form>
       {error && <div className="error-message">{error}</div>}
