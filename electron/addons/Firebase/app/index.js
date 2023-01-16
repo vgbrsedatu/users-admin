@@ -42,14 +42,14 @@ const auth = getAuth(app);
 /**
  * The `Firestore` service for the given app.
  *
- * @type {Firestore}
+ * @type {FirebaseFirestore.Firestore}
  */
 const firestore = getFirestore(app);
 
 /**
  * The `Storage` service for the default app or a given app.
  *
- * @type {Storage}
+ * @constant {Storage} storage
  */
 const storage = getStorage(app);
 

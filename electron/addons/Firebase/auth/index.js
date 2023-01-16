@@ -97,7 +97,7 @@ const deleteUser = uid =>
     auth
       .deleteUser(uid)
       .then(() => {
-        resolve(true);
+        resolve(uid);
       })
       .catch(error => {
         reject(error);

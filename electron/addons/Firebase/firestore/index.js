@@ -13,13 +13,12 @@ const users = firestore.collection('users');
 const createUser = (uid, properties) =>
   new Promise((resolve, reject) => {
     users
-      .collection('users')
       .doc(uid)
       .set(properties)
       .then(WriteResult => {
         resolve(WriteResult);
       })
-      .catch(error => reject(error));
+      .catch(error => reject(error.message));
   });
 
 const getUser = uid =>
@@ -31,19 +30,18 @@ const getUser = uid =>
       .then(DocumentSnapshot => {
         resolve(DocumentSnapshot);
       })
-      .catch(error => reject(error));
+      .catch(error => reject(error.message));
   });
 
 const deleteUser = uid =>
   new Promise((resolve, reject) => {
     users
-      .collection('users')
       .doc(uid)
       .delete()
       .then(WriteResult => {
         resolve(WriteResult);
       })
-      .catch(error => reject(error));
+      .catch(error => reject(error.message));
   });
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
