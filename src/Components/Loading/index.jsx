@@ -16,7 +16,12 @@ import { PropTypes } from 'prop-types';
  */
 const Loading = ({ modifier }) => {
   const style = modifier ? `loading ${modifier}` : 'loading';
-  return <section className={style} />;
+  return (
+    <section className={style}>
+      <header className="loading__header" />
+      <main className="loading__main" />
+    </section>
+  );
 };
 
 Loading.propTypes = {
