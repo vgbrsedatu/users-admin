@@ -18,11 +18,12 @@ import Navigation from './Navigation';
  */
 const Container = () => {
   const { pathname } = useLocation();
-  const onSignin = pathname === '/signin';
+  const notNavigation = ['/signin'];
+  const showNavigation = !notNavigation.includes(pathname);
 
   return (
     <div id="container">
-      {!onSignin && <Navigation />}
+      {showNavigation && <Navigation />}
       <Router />
     </div>
   );
