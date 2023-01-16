@@ -409,6 +409,48 @@ p {
   padding: 5px;
 }
 
+.loading {
+  display: flex;
+  flex-flow: column;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  gap: 15px;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.loading__header {
+  flex: 1 1 auto;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: loading;
+  background-color: #1A1A1A;
+}
+
+.loading__main {
+  flex: 10 1 auto;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-name: loading;
+  background-color: #1A1A1A;
+}
+
+@keyframes loading {
+  0% {
+    background-color: inherit;
+  }
+
+  50% {
+    background-color: var(--color-outline);
+  }
+
+  100% {
+    background-color: inherit;
+  }
+}
+
 .surface {
   display: flex;
   flex-flow: column;
@@ -437,6 +479,7 @@ p {
 
 .profile__image {
   display: flex;
+  flex: 1 1 auto;
   flex-flow: column;
   align-items: center;
   gap: 15px;
@@ -446,6 +489,16 @@ p {
   width: 250px;
   height: auto;
   border-radius: 50%;
+}
+
+.profile__crooper {
+  width: 250px;
+  height: 250px !important;
+}
+
+div[name="action-con"] {
+  justify-content: end;
+  gap: 0 5px;
 }
 
 .profile__information {
@@ -463,20 +516,13 @@ p {
 
 .profile__data {
   display: grid;
-  gap: 10px 10px;
+  gap: 10px 15px;
   grid-template-columns: minmax(100px, max-content) auto;
   overflow-y: scroll;
 }
 
 .profile__data span:nth-child(odd) {
   text-align: right;
-}
-
-.profile__data span:nth-child(even) {
-  padding-left: 15px;
-  border-radius: 10px;
-  background-color: var(--color-background);
-  color: var(--color-on-background);
 }
 
 .profile__controls {
