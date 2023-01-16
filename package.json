@@ -57,7 +57,7 @@
     "firebase-admin": "^11.4.1",
     "node-machine-id": "^1.1.12",
     "prop-types": "^15.8.1",
-    "react-easy-crop": "^4.6.3"
+    "react-avatar-image-cropper": "^1.4.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
