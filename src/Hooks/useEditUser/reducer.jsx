@@ -1,5 +1,22 @@
+/**
+ * @author Victor Giovanni Beltrán Rodríguez
+ * @file Contains `useStorage` a custom React Hook.
+ */
+
+// ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT MODULES
 import * as types from './types';
 
+// ━━ MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/**
+ * Reducer function for `useAddUser` custom React Hook.
+ *
+ * @param {object} state - The current value of the state.
+ * @param {object} action - Action to execute.
+ * @param {string} action.type - Type of action to execute.
+ * @param {function} action.payload - Payload for action to execute.
+ * @returns {object} The updated status.
+ */
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -85,4 +102,5 @@ const reducer = (state, action) => {
   }
 };
 
+// ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export default reducer;
