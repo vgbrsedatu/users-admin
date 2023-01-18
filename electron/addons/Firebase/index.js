@@ -1,10 +1,16 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Main file to export all electron services to main proccess.
+ * @file Manages firebase addons module.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-import * as services from './services';
+import { deleteUser, updateUser, addUser } from './services';
+import { uploadFiles, uploadFromBlob, deleteFiles } from './storage';
 
 // ━━ EXPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export default services;
+export { deleteUser };
+export { updateUser };
+export { addUser };
+export { uploadFiles };
+export { uploadFromBlob };
+export { deleteFiles };
