@@ -32,12 +32,15 @@ const levels = {
  * @param   {string} options.icon - An icon to use in the notification.
  * @param   {number} options.urgency - The urgency level of the notification.
  * @returns {Notification} Launch a notification.
- * @example notification({
+ * @example
+ * ```js
+ * notification({
  *   title: 'A test notification',
  *   body: 'I am a body notification',
  *   urgency: 'critical',
  *   icon: 'assets/icons/app.ico',
  * });
+ * ```
  *
  */
 const notification = ({ title, body, icon, urgency }) =>
