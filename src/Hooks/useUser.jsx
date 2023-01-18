@@ -55,7 +55,7 @@ import { getUser } from '../services/firebase/api/users';
 const useUser = uid => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getUser(uid)
