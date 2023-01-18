@@ -12,11 +12,11 @@ import useLocalStorage from './useLocalStorage';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The returns value from `useOpacity`
+ * The returns value from `useOpacity`.
  *
- * @typedef   {object}                  OpacityResponse
- * @property  {number}                  opacity         - The `opacity` value.
- * @property  {(value:string) => void}  changeOpacity   - A function to change `opacity` state.
+ * @typedef   {object}                  opacityHook
+ * @property  {number}                  opacity         - The current `opacity` value.
+ * @property  {(value:string) => void}  changeOpacity   - A function to update `opacity` state.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -24,7 +24,7 @@ import useLocalStorage from './useLocalStorage';
  * The `useOpacity` it's a custom React hook witch communicates with the
  * `electron` api, used to manages opacity state.
  *
- * @returns {OpacityResponse} An object to manage the opacity state.
+ * @returns {opacityHook} An object to manage the opacity state.
  * @example const { opacity, changeOpacity } = useOpacity('opacity', 1);
  *
  */
