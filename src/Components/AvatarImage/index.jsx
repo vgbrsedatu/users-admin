@@ -42,7 +42,7 @@ const actions = [
  * @returns {JSX.Element} The `MinimizeButton` components.
  */
 const Image = ({ image, toogle }) => (
-  <React.Fragment key="profile">
+  <React.Fragment key="image">
     <img alt="user profile" src={image} />
     <button
       type="button"
@@ -75,12 +75,15 @@ const AvatarImage = props => {
   const [onCropper, setOnCropper] = useState(false);
   const style = { width: '250px', height: '250px', margin: 'auto' };
 
-  const apply = file => {
-    // handle the blob file you want
-    // such as get the image src
-    const url = URL.createObjectURL(file);
-    onSave(url);
-    setOnCropper(false);
+  const apply = blob => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onload = event => {
+      const mime = blob.type;
+      const raw = event.target.result;
+      onSave({ mime, raw });
+      setOnCropper(false);
+    };
   };
 
   const toogle = () => {
@@ -92,7 +95,7 @@ const AvatarImage = props => {
   };
 
   return (
-    <React.Fragment key="profile">
+    <React.Fragment key="avatarimage">
       {!onCropper ? (
         <Image image={image} toogle={toogle} />
       ) : (
