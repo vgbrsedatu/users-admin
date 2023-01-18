@@ -33,7 +33,7 @@ const LEVEL = ON_DEVELOPMENT ? 'info' : 'silly';
 /**
  * Formats for file and console logger.
  *
- * @constant {Object} LEVEL
+ * @constant {Object} FORMATS
  * @property {string} console - Console format
  * @property {string} file - File format
  */
