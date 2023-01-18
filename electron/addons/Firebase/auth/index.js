@@ -80,15 +80,6 @@ const updateUser = (uid, properties) =>
 /**
  * Deletes an existing user.
  *
- * NOTES:
- *
- * - The `email` property, must be a valid email address.
- * - The `password` property, must be at least six characters long.
- * - The `phoneNumber` property, must be a valid E.164 spec compliant phone number.
- * - The `emailVerified` property, if not provided, the default is `false`.
- * - The `disabled` property, true for disabled; false for enabled. If not provided,
- *   the default is false.
- *
  * @param {string} uid The uid corresponding to the user to update.
  * @returns {Promise.<void>} An empty promise fulfilled once the user has been deleted.
  */
