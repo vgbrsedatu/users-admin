@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 /**
  * The returns value from `useWindow`
  *
- * @typedef {Object} WindowResponse
+ * @typedef {object} windowHook
  * @property {boolean} maximize - If the window state is maximized, Default value is `false`.
  * @property {boolean} fullScreen - If the window state is fullscreened, Default value is `false`.
  * @property {() => void} closeWindow - A function that sends a signal to ipcMain to close the window.
@@ -25,7 +25,7 @@ import { useEffect, useState } from 'react';
  * The `useWindow` it's a custom React hook witch communicates with the
  * `electron` api, used to manage window states.
  *
- * @returns {WindowResponse}
+ * @returns {windowHook}
  */
 const useWindow = () => {
   const [maximize, setMaximize] = useState(false);
