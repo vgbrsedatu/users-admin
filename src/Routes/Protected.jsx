@@ -18,6 +18,8 @@ import Loading from '../Components/Loading';
  * no authentication.
  *
  * @component
+ * @param {object} props - Component properties.
+ * @param {JSX.Element} props.children - Component to be protected.
  * @returns {JSX.Element} The `Protected` components.
  */
 const Protected = ({ children }) => {
@@ -31,6 +33,7 @@ const Protected = ({ children }) => {
   if (!auth) {
     return <Navigate to="/signin" state={{ from: pathname }} replace />;
   }
+
   return children;
 };
 
