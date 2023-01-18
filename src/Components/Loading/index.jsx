@@ -2,6 +2,7 @@
  * @author Victor Giovanni Beltrán Rodríguez
  * @file Manage `Loading` React component.
  */
+
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT REACT MODULES
 import { PropTypes } from 'prop-types';
@@ -11,7 +12,8 @@ import { PropTypes } from 'prop-types';
  * The `Loading` component.
  *
  * @component
- * @param {string} modifier - Additional class to modify component styles.
+ * @param {object} props - Component properties.
+ * @param {string} props.modifier - Additional class to modify component styles.
  * @returns {JSX.Element} The `Loading` components.
  */
 const Loading = ({ modifier }) => {
