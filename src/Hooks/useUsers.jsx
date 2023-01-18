@@ -41,9 +41,9 @@ import { getUsers } from '../services/firebase/api/users';
  * The returns value from `useUsers`
  *
  * @typedef   {object}        usersHook
- * @property  {boolean}       loading       - The initial value is `false`, it changes when the `useUsers` hook finishes loading the `users`.
- * @property  {boolean|Error} error         - The initial value is `false`, it changes if there was a problem loading users.
- * @property  {Array.<user>}  Users         - The collection of users.
+ * @property  {boolean}       loading   - The initial value is `false`, it changes when the `useUsers` hook finishes loading the `users`.
+ * @property  {false|Error}   error     - The initial value is `false`, it changes if there was a problem loading users.
+ * @property  {Array.<user>}  users     - The collection of users.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

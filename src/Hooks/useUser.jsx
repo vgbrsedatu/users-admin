@@ -14,7 +14,7 @@ import { getUser } from '../services/firebase/api/users';
 /**
  * An `object` with user information.
  *
- * @typedef   {object}  User
+ * @typedef   {object}  user
  * @property  {string}  email                 - User email.
  * @property  {string}  name                  - User name.
  * @property  {string}  password              - User password.
@@ -38,16 +38,19 @@ import { getUser } from '../services/firebase/api/users';
  */
 
 /**
- * The returns value from `useUser`
+ * The returns value from `useUsers`
  *
- * @typedef   {User}        UserResponse
+ * @typedef   {object}      userHook
+ * @property  {boolean}     loading   - The initial value is `false`, it changes when the `useUsers` hook finishes loading the `users`.
+ * @property  {false|Error} error     - The initial value is `false`, it changes if there was a problem loading users.
+ * @property  {user}        user      - An `object` with `user` information.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `useUser` it's a custom React hook witch communicates firebase api.
  *
- * @returns {UserResponse} An object to manage the users.
+ * @returns {userHook} An object to manage the users.
  */
 const useUser = uid => {
   const [user, setUser] = useState({});
