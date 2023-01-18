@@ -1,10 +1,10 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Main file to export all electron services to main proccess.
+ * @file Manages all addons modules.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-import firebase from './Firebase';
+import * as firebase from './Firebase';
 
 // ━━ EXPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export { firebase };
+export { firebase }; // eslint-disable-line import/prefer-default-export
