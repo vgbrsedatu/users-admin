@@ -26,6 +26,7 @@ import useLocalStorage from './useLocalStorage';
  *
  * @returns {OpacityResponse} An object to manage the opacity state.
  * @example const { opacity, changeOpacity } = useOpacity('opacity', 1);
+ *
  */
 const useOpacity = () => {
   const [opacity, setOpacity] = useLocalStorage('opacity', 1);
