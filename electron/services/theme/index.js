@@ -7,13 +7,13 @@
 /**
  * The default values in the `themeSource` property from `nativeTheme` module.
  *
- * @typedef   {'system'|'dark'|'light'}  Source
+ * @typedef   {'system'|'dark'|'light'}  source
  */
 
 /**
  * The value that can be returned from the `getCurrent` function
  *
- * @typedef   {'dark'|'light'}  Current
+ * @typedef   {'dark'|'light'}  current
  */
 
 // ━━	MODULE	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -33,9 +33,9 @@
  * - `nativeTheme.shouldUseDarkColors`.
  *
  * @private
- * @param   {Source} source - The value representing the current color scheme.
+ * @param   {source} source - The value representing the current color scheme.
  * @param   {boolean} shouldUseDark - If dark mode is currently activated.
- * @returns {Current} The theme that the operating system is using.
+ * @returns {current} The theme that the operating system is using.
  * @example const { nativeTheme } require('electron');
  *
  * const source = nativeTheme.themeSource;
