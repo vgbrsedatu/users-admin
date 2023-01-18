@@ -3,12 +3,24 @@
  * @file Manage `User` React component view.
  */
 
+// ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT REACT MODULES
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+// » IMPORT COMPONENTS
 import Loading from '../../Components/Loading';
+
+// » IMPORT CUSTOM HOOKS
 import useDeleteUser from '../../Hooks/useDeleteUser';
 import useUser from '../../Hooks/useUser';
 
+// ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/**
+ * The `roles` object is used to translate the roles.
+ *
+ * @constant {object} roles
+ */
 const roles = {
   superadmin: 'Super Administrador',
   administrator: 'Administrador',
@@ -30,6 +42,7 @@ const User = () => {
   const { user, loading } = useUser(state);
   const navigate = useNavigate();
   const { success, error, deleteUser } = useDeleteUser();
+
   useEffect(() => {
     if (success) {
       navigate('/');
@@ -84,7 +97,7 @@ const User = () => {
           <span>Municipio:</span>
           <span>{user.address.municipality}</span>
           <span>Localidad:</span>
-          <span>{user.address.locality ? user.address.locality : null}</span>
+          <span>{user.address.locality ? user.address.locality : ''}</span>
           <span>Estado:</span>
           <span>{user.address.state}</span>
         </div>
