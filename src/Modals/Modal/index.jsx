@@ -44,6 +44,7 @@ Portal.propTypes = {
 /**
  * A reusable component to create modal windows.
  *
+ * @component
  * @param {object} props - Component properties.
  * @param {JSX.Element} props.children - Child component to be used as modal component.
  * @param {string} props.id - Unique identifier for the `div` HtmlElement.
