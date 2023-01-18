@@ -1,14 +1,16 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Manage the  `app` module of the `firestore-admin`
+ * @file Manage the `app` module of the `firestore-admin`
  */
 
 // ━━	IMPORT MODULES	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/// » IMPORT THIRD PARTIES MODULES
+// » IMPORT THIRD PARTIES MODULES
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
+
+// » IMPORT MODULES
 import serviceAccount from './service-account.json';
 
 // ━━	CONSTANTS	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
