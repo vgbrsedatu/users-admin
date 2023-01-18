@@ -1,10 +1,10 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Manage `Container` React component.
+ * @file Manage `Navigation` React component.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// » IMPORT COMPONENTS
+// » IMPORT REACT MODULES
 import { NavLink } from 'react-router-dom';
 
 // » IMPORT CONSUMERS CONTEXT
@@ -15,10 +15,10 @@ import useTheme from '../../Hooks/useTheme';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The `Container` component.
+ * The `Navigation` component.
  *
  * @component
- * @returns {JSX.Element} The `Container` components.
+ * @returns {JSX.Element} The `Navigation` components.
  */
 const Navigation = () => {
   const { theme, toogleTheme } = useTheme();
