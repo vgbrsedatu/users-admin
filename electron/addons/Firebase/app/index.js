@@ -49,7 +49,7 @@ const firestore = getFirestore(app);
 /**
  * The `Storage` service for the default app or a given app.
  *
- * @constant {Storage} storage
+ * @constant {FirebaseFirestore.Storage} storage
  */
 const storage = getStorage(app);
 
