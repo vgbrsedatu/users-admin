@@ -3,9 +3,15 @@
  * @file Manage `Signin` React component view.
  */
 
+// ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT REACT MODULES
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+// » IMPORT COMPONENTS
 import Loading from '../../Components/Loading';
+
+// » IMPORT CUSTOM HOOKS
 import { useSignin } from '../../Context/AuthContext';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -51,6 +57,7 @@ const Signin = () => {
               name="email"
               placeholder="Escribe tu correo usuario"
               value={email}
+              required
               onChange={e => {
                 setEmail(e.target.value);
               }}
@@ -64,6 +71,7 @@ const Signin = () => {
               name="password"
               placeholder="Escribe tu correo contraseña"
               value={password}
+              required
               onChange={e => {
                 setPassword(e.target.value);
               }}
