@@ -8,7 +8,7 @@
 import { useEffect } from 'react';
 
 // » IMPORT CUSTOM HOOKS
-import useStorage from './useStorage';
+import useLocalStorage from './useLocalStorage';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -25,9 +25,10 @@ import useStorage from './useStorage';
  * `electron` api, used to manages opacity state.
  *
  * @returns {OpacityResponse} An object to manage the opacity state.
+ * @example const { opacity, changeOpacity } = useOpacity('opacity', 1);
  */
 const useOpacity = () => {
-  const [opacity, setOpacity] = useStorage('opacity', 1);
+  const [opacity, setOpacity] = useLocalStorage('opacity', 1);
 
   useEffect(() => {
     window.appRuntime.send('opacity', opacity);
