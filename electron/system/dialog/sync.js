@@ -27,7 +27,7 @@ import { dialog } from 'electron';
  * The filters specifies an array of file types that can be displayed or
  * selected when you want to limit the user to a specific type.
  *
- * @typedef  {object} FileFilter
+ * @typedef  {object} fileFilter
  * @property {string} name       - Filter name.
  * @property {string} extensions - Allowed file extensions.
  */
@@ -42,7 +42,7 @@ import { dialog } from 'electron';
  * The `noResolveAliases` property selected aliases will now return the alias
  * path instead of their target path.
  *
- * @typedef  {object} OpenProperties
+ * @typedef  {object} openProperties
  * @property {string} openFile                - Allow files to be selected.
  * @property {string} openDirectory           - Allow directories to be selected.
  * @property {string} multiSelections         - Allow multiple paths to be selected.
@@ -60,7 +60,7 @@ import { dialog } from 'electron';
  * The `showOverwriteConfirmation` property if the user types a file name that
  * already exists, only for `Linux`.
  *
- * @typedef  {object} SaveProperties
+ * @typedef  {object} saveProperties
  * @property {string} showHiddenFiles           - Show hidden files in dialog.
  * @property {string} createDirectory           - Allow creating new directories from dialog, only for `macOS`.
  * @property {string} treatPackageAsDirectory   - Treat packages, such as .app folders, as a directory instead of a file, only for `macOS`.
@@ -96,7 +96,7 @@ import { dialog } from 'electron';
  * on Windows. For example, a button label of Vie&w will be converted to Vie_w
  * on Linux and View on macOS and can be selected via Alt-W on Windows and Linux.
  *
- * @typedef  {object}             MessageOptions
+ * @typedef  {object}             messageOptions
  * @property {string}             message               - Content of the message box.
  * @property {string}             [type]                - Can be "none", "info", "error", "question" or "warning".
  * @property {string}             [buttons]             - Array of texts for buttons.
@@ -116,7 +116,7 @@ import { dialog } from 'electron';
  * The `filters` property filter files that can be displayed or selected when
  * you want to limit the user to a specific type.
  *
- * @typedef  {object}             OpenOptions
+ * @typedef  {object}             openOptions
  * @property {string}             [title]                   - The dialog title. Cannot be displayed on some Linux desktop environments.
  * @property {string}             [defaultPath]             - Absolute directory path, absolute file path, or file name to use by default.
  * @property {string}             [buttonLabel]             - Custom label for the confirmation button, when left empty the default label will be used.
@@ -132,7 +132,7 @@ import { dialog } from 'electron';
  * The `filters` property filter files that can be displayed or selected when
  * you want to limit the user to a specific type.
  *
- * @typedef  {object}             SaveOptions
+ * @typedef  {object}             saveOptions
  * @property {string}             [title]                   - The dialog title. Cannot be displayed on some Linux desktop environments.
  * @property {string}             [defaultPath]             - Absolute directory path, absolute file path, or file name to use by default.
  * @property {string}             [buttonLabel]             - Custom label for the confirmation button, when left empty the default label will be used.
@@ -154,7 +154,7 @@ import { dialog } from 'electron';
  *
  * @private
  * @param   {Window} window - For attach itself to a parent window.
- * @param   {MessageOptions} options - Options for giving information and behavior to the modal.
+ * @param   {messageOptions} options - Options for giving information and behavior to the modal.
  * @returns {number} The index of the clicked button.
  * @example message({
  *   title: 'A title message',
@@ -173,7 +173,7 @@ const message = (window, options) => dialog.showMessageBoxSync(window, options);
  *
  * @private
  * @param {Window} window - For attach itself to a parent window.
- * @param {OpenOptions} options - Options for giving information and behavior to the modal.
+ * @param {openOptions} options - Options for giving information and behavior to the modal.
  * @returns {Array.<string>| undefined} The index of the clicked button.
  * @example open(window, {
  *   properties: ['showHiddenFiles', 'openDirectory'],
@@ -191,7 +191,7 @@ const open = (window, options) => dialog.showOpenDialogSync(window, options);
  *
  * @private
  * @param {Window} window - For attach itself to a parent window.
- * @param {SaveOptions} options - Options for giving information and behavior to the modal.
+ * @param {saveOptions} options - Options for giving information and behavior to the modal.
  * @returns {string|undefined} The path of the file chosen by the user.
  * @example const pathFile = save(window, {
  *   properties: ['showHiddenFiles'],
