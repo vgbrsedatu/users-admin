@@ -17,7 +17,11 @@ import usePortal from '../../Hooks/usePortal';
 /**
  * A component to create `Portal` React
  *
- * @returns {ReactPortal}
+ * @component
+ * @param {object} props - Component properties.
+ * @param {JSX.Element} props.children - Child component to be used as portal.
+ * @param {string} props.id - Function to minimize the current window.
+ * @returns {React.ReactPortal}
  * @example
  * ```js
  *  <Portal id="modal">
@@ -40,6 +44,13 @@ Portal.propTypes = {
 /**
  * A reusable component to create modal windows.
  *
+ * @param {object} props - Component properties.
+ * @param {JSX.Element} props.children - Child component to be used as modal component.
+ * @param {string} props.id - Unique identifier for the `div` HtmlElement.
+ * @param {string} props.title - The name that the titlebar will use.
+ * @param {boolean} props.show - Boolean value used to show the modal.
+ * @param {boolean} props.toogle - Change the value of show property.
+ * @returns {JSX.Element}
  * @example
  * ```js
  *  <Modal id="modal" show={state} setShow={setState}>
@@ -48,7 +59,7 @@ Portal.propTypes = {
  *```js
  *
  */
-const Modal = ({ children, id, show, title, toogle }) => {
+const Modal = ({ children, id, title, show, toogle }) => {
   if (!show) {
     return null;
   }
