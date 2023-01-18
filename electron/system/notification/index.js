@@ -50,4 +50,4 @@ const notification = ({ title, body, icon, urgency }) =>
   });
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export default notification; // eslint-disable-line import/prefer-default-export
+export default notification;
