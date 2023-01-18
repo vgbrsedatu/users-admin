@@ -12,6 +12,11 @@ import { PropTypes } from 'prop-types';
 import Avatar from 'react-avatar-image-cropper';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/**
+ * A `JSX.Element[]` component for the `Avatar` component icon.
+ *
+ * @type {JSX.Element}
+ */
 const icon = (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <circle cx="12" cy="8" fill="#464646" r="4" />
@@ -22,6 +27,11 @@ const icon = (
   </svg>
 );
 
+/**
+ * An `Array` with `JSX.Element[]` for the `Avatar` component menu.
+ *
+ * @type {JSX.Element[]}
+ */
 const actions = [
   <button type="button" title="cancelar" key={0}>
     <i className="material-icons">close</i>
@@ -39,7 +49,7 @@ const actions = [
  * @param {object} props - Component properties.
  * @param {string} props.image - The `src` source to img html Element.
  * @param {() => void} props.toogle - A `function` to toogle view on `AvatarImage` component.
- * @returns {JSX.Element} The `MinimizeButton` components.
+ * @returns {JSX.Element} The `Image` components.
  */
 const Image = ({ image, toogle }) => (
   <React.Fragment key="image">
@@ -68,7 +78,7 @@ Image.propTypes = {
  * @param {object} props - Component properties.
  * @param {string} props.image - The `src` source to img html Element.
  * @param {string} props.onSave - A `function` to save the image to Firebase storage.
- * @returns {JSX.Element} The `MinimizeButton` components.
+ * @returns {JSX.Element} The `AvatarImage` components.
  */
 const AvatarImage = props => {
   const { image, onSave } = props;
