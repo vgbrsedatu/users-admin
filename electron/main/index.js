@@ -23,6 +23,8 @@ import * as system from '../system';
 // » IMPORT SYSTEM
 import * as services from '../services';
 
+import * as addons from '../addons';
+
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `ON_DEVELOPMENT` constant its used to know if the main process is running
@@ -480,4 +482,68 @@ ipcMain.on('theme:choose', (event, choose) => {
   const shouldUseDark = nativeTheme.shouldUseDarkColors;
   const current = services.theme.getCurrent({ theme, shouldUseDark });
   event.reply('theme:toggle.reply', current);
+});
+
+/**
+ * Listen to `theme-mode:toggle` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#theme-mode:toggle
+ */
+ipcMain.on('user:delete', (event, id) => {
+  const response = system.dialog.sync.message({
+    message: '¿Estas seguro que deseas eliminar este perfil?',
+    type: 'question',
+    buttons: ['No estoy seguro', 'Sí'],
+    title: 'Administrador de usuarios',
+    defaultId: 0,
+    cancelId: 0,
+  });
+  if (response === 1) {
+    addons.firebase
+      .deleteUser(id)
+      .then(() => {
+        event.reply('user:delete.reply', { success: true, error: false });
+      })
+      .catch(err => {
+        event.reply('user:delete.reply', { success: false, error: err.message });
+      });
+  }
+});
+
+/**
+ * Listen to `theme-mode:toggle` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#theme-mode:toggle
+ */
+ipcMain.on('user:add', (event, payload) => {
+  addons.firebase.addUser(payload);
+});
+
+/**
+ * Listen to `theme-mode:toggle` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#theme-mode:toggle
+ */
+ipcMain.on('user:edit', (event, payload) => {
+  addons.firebase.addUser(payload);
+});
+
+/**
+ * Listen to `theme-mode:toggle` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#theme-mode:toggle
+ */
+ipcMain.handle('image:upload', (event, { mime, raw, name }) => { // eslint-disable-line arrow-body-style, prettier/prettier
+  return new Promise((resolve, reject) => {
+    addons.firebase
+      .uploadFromBlob({ mime, raw, name })
+      .then(result => {
+        resolve({ success: true, error: false, link: result });
+      })
+      .catch(err => reject(err.message));
+  });
 });
