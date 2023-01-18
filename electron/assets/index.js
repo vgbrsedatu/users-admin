@@ -11,7 +11,7 @@ import path from 'path';
 /**
  * Collection of application icon paths file
  *
- * @typedef  {object} Icons
+ * @typedef  {object} icons
  * @property {string} app         - Application icon paths file.
  * @property {string} about       - About icon paths file.
  * @property {string} success     - Success icon paths file.
@@ -108,7 +108,7 @@ const ICON_WARNING = path.join.apply(null, PATH_ICONS.WARNING);
 /**
  * A collection of icon file path reference, for different application uses.
  *
- * @type {Icons} icons
+ * @type {icons} icons
  * @private
  */
 const icons = {
