@@ -13,7 +13,11 @@ import useUsers from '../../Hooks/useUsers';
 import Loading from '../../Components/Loading';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+/**
+ * The `roles` object is used to translate the roles.
+ *
+ * @constant {object} roles
+ */
 const roles = {
   superadmin: 'Super Administrador',
   administrator: 'Administrador',
