@@ -11,6 +11,9 @@ import { PropTypes } from 'prop-types';
  * The `TitleBar` component.
  *
  * @component
+ * @param {object} props - Component properties.
+ * @param {string} props.title - The name that the titlebar will use.
+ * @param {boolean} props.toogle - Change the value of show property.
  * @returns {JSX.Element} The `TitleBar` components.
  */
 const TitleBar = ({ title, toogle }) => {
