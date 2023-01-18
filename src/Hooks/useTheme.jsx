@@ -8,13 +8,13 @@
 import { useEffect } from 'react';
 
 // » IMPORT CUSTOM HOOKS
-import useStorage from './useStorage';
+import useLocalStorage from './useLocalStorage';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The returns value from `useTheme`
  *
- * @typedef   {object}                  ThemeResponse
+ * @typedef   {object}                  themeHook
  * @property  {'dark'|'light'}          theme         - The current value of `theme`.
  * @property  {() => void}              toogleTheme   - A function to change the value of `theme`.
  * @property  {(choose:string) => void} chooseTheme   - A function to choose the value of `theme`, allowed values are `light` `dark` or `system`.
@@ -23,12 +23,12 @@ import useStorage from './useStorage';
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `useTheme` it's a custom React hook witch communicates with the
- * `electron` api, used to manages versions state.
+ * `electron` api, used to manages scheme color app.
  *
- * @returns {ThemeResponse} Information about the versions application.
+ * @returns {themeHook} Returns a stateful value, and a function to update it.
  */
 const useTheme = () => {
-  const [theme, setTheme] = useStorage('theme', null);
+  const [theme, setTheme] = useLocalStorage('theme', null);
 
   useEffect(() => {
     const current = window.appRuntime.sendSync('theme:current');
