@@ -10,7 +10,7 @@
  * The `owner` property this is either your username or the name of the
  * organization that owns the repository.
  *
- * @typedef   {object}  Github
+ * @typedef   {object}  github
  * @property  {string}  owner   - The owner of repositor.
  * @property  {string}  name    - The name of repository.
  */
@@ -18,7 +18,7 @@
 /**
  * An `Object` with information to configure the `autoUpdater` electron module.
  *
- * @typedef   {object}  UpdateOptions
+ * @typedef   {object}  updateOptions
  * @property  {string}  url           - The url to which the http request will be made.
  * @property  {string}  headers       - The headers to make the http request.
  */
@@ -40,9 +40,9 @@ const HOST = 'https://update.electronjs.org';
  *
  * @private
  * @param   {object} settings - Adds name, icon and menu to tray.
- * @param   {Github} settings.github - Details that identify the repository.
+ * @param   {github} settings.github - Details that identify the repository.
  * @param   {string} settings.version - The version of the current bundle or executable is returned.
- * @returns {UpdateOptions} Information to configure the `autoUpdater`.
+ * @returns {updateOptions} Information to configure the `autoUpdater`.
  * @example const options = createOptions({
  *  github: {
  *    owner: 'user',
