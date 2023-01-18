@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The returns value from `DeleteUserResponse`
+ * The returns value from `useDeleteUser`
  *
  * The property `success`, the initial value is null, when using the
  * `deleteUser` function depending on the response, it can be `true`, if the
@@ -20,17 +20,17 @@ import { useEffect, useState } from 'react';
  * containing the error message, if the user was successfully deleted otherwise
  * it is `false`.
  *
- * @typedef   {object}                DeleteUserResponse
- * @property  {Bolean|null}           success             - The initial value is `null`.
- * @property  {string|null}           error               - The initial value is `null`.
- * @property  {(id: string) => void}  deleteUser          - Function to delete a user.
+ * @typedef   {object}                deleteUserHook
+ * @property  {Bolean|null}           success         - The initial value is `null`.
+ * @property  {string|null}           error           - The initial value is `null`.
+ * @property  {(id: string) => void}  deleteUser      - Function to delete a user.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `useUser` it's a custom React hook witch communicates firebase api.
  *
- * @returns {DeleteUserResponse} An object to manage the users.
+ * @returns {deleteUserHook} An object to manage the users.
  */
 const useDeleteUser = () => {
   const [success, setSuccess] = useState(null);
