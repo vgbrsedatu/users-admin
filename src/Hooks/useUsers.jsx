@@ -1,6 +1,6 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Contains `useOpacity` a custom React Hook.
+ * @file Contains `useUsers` a custom React Hook.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -14,7 +14,7 @@ import { getUsers } from '../services/firebase/api/users';
 /**
  * An `object` with user information.
  *
- * @typedef   {object}  User
+ * @typedef   {object}  user
  * @property  {string}  email                 - User email.
  * @property  {string}  name                  - User name.
  * @property  {string}  password              - User password.
@@ -40,17 +40,17 @@ import { getUsers } from '../services/firebase/api/users';
 /**
  * The returns value from `useUsers`
  *
- * @typedef   {object}        UsersResponse
+ * @typedef   {object}        usersHook
  * @property  {boolean}       loading       - The initial value is `false`, it changes when the `useUsers` hook finishes loading the `users`.
  * @property  {boolean|Error} error         - The initial value is `false`, it changes if there was a problem loading users.
- * @property  {Array.<User>}  Users         - The collection of users.
+ * @property  {Array.<user>}  Users         - The collection of users.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `useUsers` it's a custom React hook witch communicates firebase api.
  *
- * @returns {UsersResponse} An object to manage the users colecction.
+ * @returns {usersHook} An object to manage the users colecction.
  */
 const useUsers = () => {
   const [users, setUsers] = useState([]);
