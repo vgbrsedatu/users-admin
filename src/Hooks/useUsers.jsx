@@ -66,7 +66,7 @@ const useUsers = () => {
       .catch(err => {
         setError(err.message);
       });
-  }, [users]);
+  }, []);
 
   return { users, loading, error };
 };
