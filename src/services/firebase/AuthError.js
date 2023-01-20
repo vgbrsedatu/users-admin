@@ -1,6 +1,5 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- *
  * @file Manages AuthError module, used to create all errors specific to
  * the Firebase Auth service interface.
  */
@@ -104,7 +103,7 @@ const codes = {
 // ━━	MODULE	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
  * The `AuthError` classs is the base class for all errors specific to
- * the `Month` class.
+ * the Firebase Auth service interface.
  *
  * @class    AdminError
  * @augments Error
@@ -123,11 +122,7 @@ class AuthError extends Error {
    *
    * @memberof  AdminError
    * @param     {string|Function} code - AuthError's message.
-   * @throws    {TypeError} If the message is not of type string.
-   * @example const ERROR = new MonthError('current option must be a Date');
-   *
-   * const DYNAMIC_MESSAGE = type => `current option must be a ${type}`;
-   * const DYNAMIC_ERROR = new MonthError(DYNAMIC_MESSAGE, ['Date']);
+   * @example const ERROR = const DYNAMIC_ERROR = new AuthError('auth/project-not-found');
    *
    */
   constructor(code) {
