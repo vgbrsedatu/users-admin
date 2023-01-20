@@ -101,6 +101,27 @@ CloseButton.propTypes = {
 };
 
 /**
+ * The `MaximizeButton` component. The `onClick` property, It must have
+ * communication with the `useWindowState` custom Hook.
+ *
+ * @component
+ * @param {object} props - Component properties.
+ * @param {boolean} props.maximize - If the current window is maximized.
+ * @param {() => void} props.onClick - Function to maximize/restore the current window.
+ * @returns {JSX.Element} The `MaximizeButton` components.
+ */
+const MaxRestButton = ({ maximize, onClick }) => (
+  <React.Fragment key="maximize-restore">
+    {maximize ? <RestoreButton onClick={onClick} /> : <MaximizeButton onClick={onClick} />}
+  </React.Fragment>
+);
+
+MaxRestButton.propTypes = {
+  maximize: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+/**
  * The `AppName` component.
  *
  * @component
@@ -131,74 +152,29 @@ AppName.propTypes = {
  * @param {() => void} props.controls.maximizeWindow - Function to maximize/restore the current window.
  * @returns {JSX.Element} The `WindowsControl` components.
  */
-const WindowsControl = ({ maximize, controls }) => (
-  <div className="titlebar__windows-control">
-    <MinimizeButton onClick={controls.minimizeWindow} />
-    {maximize ? (
-      <RestoreButton onClick={controls.maximizeWindow} />
-    ) : (
-      <MaximizeButton onClick={controls.maximizeWindow} />
-    )}
-    <CloseButton onClick={controls.closeWindow} />
-  </div>
-);
+const WindowsControl = ({ buttons, maximize, controls }) => {
+  const types = {
+    '001': { minimize: false, maximize: false, close: true },
+    '101': { minimize: true, maximize: false, close: true }, // eslint-disable-line prettier/prettier
+    '111': { minimize: true, maximize: true, close: true }, // eslint-disable-line prettier/prettier
+  };
+  const show = types[buttons] || types['111'];
+  return (
+    <div className="titlebar__windows-control">
+      {show.minimize && <MinimizeButton onClick={controls.minimizeWindow} />}
+      {show.maximize && <MaxRestButton maximize={maximize} onClick={controls.maximizeWindow} />}
+      {show.close && <CloseButton onClick={controls.closeWindow} />}
+    </div>
+  );
+};
 
 WindowsControl.propTypes = {
+  buttons: PropTypes.string.isRequired,
   maximize: PropTypes.bool.isRequired,
   controls: PropTypes.shape({
-    closeWindow: PropTypes.func.isRequired,
     minimizeWindow: PropTypes.func.isRequired,
     maximizeWindow: PropTypes.func.isRequired,
-  }).isRequired,
-};
-
-/**
- * The `ModalControl` component.
- *
- * @component
- * @param {object} props - Component properties.
- * @param {() => void} props.control - Function to close the current window.
- * @returns {JSX.Element} The `ModalControl` components.
- */
-const ModalControl = ({ control }) => (
-  <div className="titlebar__windows-control">
-    <CloseButton onClick={control} />
-  </div>
-);
-
-ModalControl.propTypes = {
-  control: PropTypes.func.isRequired,
-};
-
-/**
- * The `MainControl` component.
- *
- * @component
- * @param {object} props - Component properties.
- * @param {boolean} props.onModal - If it is a normal or modal window.
- * @param {boolean} props.maximize - If the current window is maximized.
- * @param {() => void} props.closeWindow - Function to close the current window.
- * @param {() => void} props.minimizeWindow - Function to minimize the current window.
- * @param {() => void} props.maximizeWindow - Function to maximize/restore the current window.
- * @returns {JSX.Element} The `MainControl` components.
- */
-const MainControl = ({ onModal, maximize, controls }) => (
-  <React.Fragment key="MainControl">
-    {onModal ? (
-      <ModalControl control={controls.closeWindow} />
-    ) : (
-      <WindowsControl maximize={maximize} controls={controls} />
-    )}
-  </React.Fragment>
-);
-
-MainControl.propTypes = {
-  onModal: PropTypes.bool.isRequired,
-  maximize: PropTypes.bool.isRequired,
-  controls: PropTypes.shape({
     closeWindow: PropTypes.func.isRequired,
-    minimizeWindow: PropTypes.func.isRequired,
-    maximizeWindow: PropTypes.func.isRequired,
   }).isRequired,
 };
 
@@ -206,10 +182,14 @@ MainControl.propTypes = {
  * The `TitleBar` component.
  *
  * @component
+ * @param {object} props - Component properties.
+ * @param {string} props.title - The title that will be displayed in the Title bar.
+ * @param {string} props.buttons - The buttons that will be displayed in the Title bar.
  * @returns {JSX.Element} The `TitleBar` components.
  */
-const TitleBar = ({ onModal, title }) => {
-  const { maximize, fullScreen, minimizeWindow, maximizeWindow, closeWindow } = useWindow();
+const TitleBar = props => {
+  const { title, buttons } = props;
+  const { maximize, fullScreen, controls } = useWindow();
 
   if (fullScreen) {
     return null;
@@ -218,22 +198,18 @@ const TitleBar = ({ onModal, title }) => {
   return (
     <div id="titlebar" className="titlebar">
       <AppName title={title} />
-      <MainControl
-        onModal={onModal}
-        maximize={maximize}
-        controls={{
-          minimizeWindow,
-          maximizeWindow,
-          closeWindow,
-        }}
-      />
+      <WindowsControl buttons={buttons} maximize={maximize} controls={controls} />
     </div>
   );
 };
 
 TitleBar.propTypes = {
   title: PropTypes.string.isRequired,
-  onModal: PropTypes.bool.isRequired,
+  buttons: PropTypes.string,
+};
+
+TitleBar.defaultProps = {
+  buttons: '111',
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

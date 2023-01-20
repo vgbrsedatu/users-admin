@@ -24,7 +24,6 @@ import Container from './Container';
 const Layout = () => {
   const { pathname } = useLocation();
   const path = pathname.slice(1);
-  const modals = ['disney'];
   const titles = {
     signin: 'Inicio de sesión',
     users: 'Lista de Usuarios',
@@ -34,11 +33,10 @@ const Layout = () => {
   };
 
   const title = titles[path] || 'Lista de Usuarios';
-  const onModal = !modals.includes(path);
 
   return (
     <React.Fragment key="Layout">
-      <TitleBar title={title} onModal={onModal} />
+      <TitleBar title={title} buttons="101" />
       <Container />
     </React.Fragment>
   );
