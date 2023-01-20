@@ -14,10 +14,11 @@ import { useEffect, useState } from 'react';
  * @typedef {object} windowHook
  * @property {boolean} maximize - If the window state is maximized, Default value is `false`.
  * @property {boolean} fullScreen - If the window state is fullscreened, Default value is `false`.
- * @property {() => void} closeWindow - A function that sends a signal to ipcMain to close the window.
- * @property {() => void} minimizeWindow - A function that sends a signal to ipcMain to minimize the window.
- * @property {() => void} maximizeWindow - A function that sends a signal to ipcMain to maximize the window.
- * @property {(view:string) => void} openWindow - A function that sends a signal to ipcMain to open a Window.
+ * @property {object} controls - An object with functions to minimize maximize and close the window.
+ * @property {() => void} controls.closeWindow - A function that sends a signal to ipcMain to close the window.
+ * @property {() => void} controls.minimizeWindow - A function that sends a signal to ipcMain to minimize the window.
+ * @property {() => void} controls.maximizeWindow - A function that sends a signal to ipcMain to maximize the window.
+ * @property {(view:string) => void} controls.openWindow - A function that sends a signal to ipcMain to open a Window.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -67,7 +68,14 @@ const useWindow = () => {
     window.appRuntime.send('window-open', view);
   };
 
-  return { maximize, fullScreen, closeWindow, minimizeWindow, maximizeWindow, openWindow };
+  const controls = {
+    closeWindow,
+    minimizeWindow,
+    maximizeWindow,
+    openWindow,
+  };
+
+  return { maximize, fullScreen, controls };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
