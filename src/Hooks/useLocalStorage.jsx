@@ -27,8 +27,8 @@ import { useState } from 'react';
  * Functions to manage the `localStorage` api.
  *
  * @typedef   {object}  storage
- * @property  {getItem} Storage.getItem - The current value of `theme`.
- * @property  {setItem} Storage.setItem - A function to change the value of `theme`.
+ * @property  {getItem} storage.getItem - Function to get the current value of the `key`.
+ * @property  {setItem} storage.setItem - Function to update the value of the `key`.
  */
 
 /**

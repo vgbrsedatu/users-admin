@@ -16,7 +16,7 @@ import useLocalStorage from './useLocalStorage';
  *
  * @typedef   {object}                  opacityHook
  * @property  {number}                  opacity         - The current `opacity` value.
- * @property  {(value:string) => void}  changeOpacity   - A function to update `opacity` state.
+ * @property  {(value:string) => void}  changeOpacity   - A function to update `opacity` value.
  */
 
 // ━━ CUSTOM REACT HOOK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
