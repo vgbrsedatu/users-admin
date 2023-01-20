@@ -12,7 +12,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../../Components/Loading';
 
 // » IMPORT CUSTOM HOOKS
-import useDeleteUser from '../../Hooks/useDeleteUser';
 import useUser from '../../Hooks/useUser';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -38,33 +37,37 @@ const roles = {
  * @returns {JSX.Element} The `User` components.
  */
 const User = () => {
-  const { state } = useLocation();
-  const { user, loading } = useUser(state);
   const navigate = useNavigate();
-  const { success, error, deleteUser } = useDeleteUser();
+  const { state: id } = useLocation();
+  const { state, deleteUser } = useUser(id);
+  const { deleted, error, loading, user } = state;
 
   useEffect(() => {
-    if (success) {
+    if (deleted) {
       navigate('/');
     }
-  }, [success, navigate]);
+  }, [deleted, navigate]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const onClick = id => {
-    navigate('/edit', { state: id });
+  const deleteuser = () => {
+    deleteUser(user.id);
+  };
+
+  const onClick = () => {
+    navigate('/edit', { state: user.id });
   };
 
   return (
     <article id="user" className="profile">
       <figure className="profile__image">
         <img alt="user profile" src={user.photo} />
-        {error && <span>{error}</span>}
       </figure>
       <div className="profile__information">
         <h1 className="profile__title">Informacion del usuario</h1>
+        {error && <span className="profile__error">{error}</span>}
         <div className="profile__data">
           <span>Nombre:</span>
           <span>{user.name}</span>
@@ -72,20 +75,20 @@ const User = () => {
           <span>{user.email}</span>
           <span>Movil:</span>
           <span>{user.mobile}</span>
-          <span>Role:</span>
-          <span>{roles[user.role]}</span>
           <span>Verificado:</span>
           <span>{user.verified ? 'Sí' : 'No'}</span>
           <span>Perfil activo:</span>
           <span>{user.disabled ? 'No' : 'Sí'}</span>
+          <span>Role:</span>
+          <span>{roles[user.role]}</span>
           <span>Compañia:</span>
           <span>{user.company.name}</span>
+          <span>Puesto:</span>
+          <span>{user.company.title}</span>
           <span>Ubicacion:</span>
           <span>{user.company.location}</span>
           <span>Departmento:</span>
           <span>{user.company.department}</span>
-          <span>Puesto:</span>
-          <span>{user.company.title}</span>
           <span>Calle:</span>
           <span>{user.address.street}</span>
           <span>Numero:</span>
@@ -102,10 +105,10 @@ const User = () => {
           <span>{user.address.state}</span>
         </div>
         <div className="profile__controls">
-          <button type="button" className="btn btn--primary" onClick={() => deleteUser(user.id)}>
+          <button type="button" className="btn btn--primary" onClick={deleteuser}>
             Eliminar Perfil
           </button>
-          <button type="button" className="btn btn--primary" onClick={() => onClick(user.id)}>
+          <button type="button" className="btn btn--primary" onClick={onClick}>
             Editar Perfil
           </button>
         </div>
