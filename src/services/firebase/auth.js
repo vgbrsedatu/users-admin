@@ -1,31 +1,60 @@
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut as signout,
-} from 'firebase/auth';
-import app from './app';
+/**
+ * @author Victor Giovanni Beltrán Rodríguez
+ * @file Manage `auth` firebase module.
+ */
+
+// ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT THIRD PARTIES MODULES
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut as signout } from 'firebase/auth';
+
+// » IMPORT MODULES
+import { auth } from './app';
 import AuthError from './AuthError';
 
-const auth = getAuth(app);
-
+// ━━ MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/**
+ * Asynchronously signs in using an email and password.
+ *
+ * @remarks Fails with an error if the email address and password do not match.
+ * @param {string} email - User email.
+ * @param {string} password - User pasword.
+ * @returns {Promise.<true|AuthError>}
+ */
 const signIn = (email, password) =>
   new Promise((resolve, reject) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => resolve(true))
-      .catch(err => reject(new AuthError(err.code)));
+      .then(() => {
+        resolve(true);
+      })
+      .catch(err => {
+        reject(new AuthError(err.code));
+      });
   });
 
+/**
+ * Signs out the current user
+ *
+ * @returns {Promise.<true|AuthError>}
+ */
 const signOut = () =>
   new Promise((resolve, reject) => {
     signout(auth)
-      .then(() => resolve(true))
-      .catch(err => reject(new AuthError(err.code)));
+      .then(() => {
+        resolve(true);
+      })
+      .catch(err => {
+        reject(new AuthError(err.code));
+      });
   });
 
-const subscribe = observer => onAuthStateChanged(auth, observer);
+/**
+ * Adds an observer for changes to the user's sign-in state.
+ *
+ * @param {(user) => void} observer - Callback triggered on change.
+ */
+const unSubscribe = observer => onAuthStateChanged(auth, observer);
 
-// export default auth;
-export { subscribe };
+// ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+export { unSubscribe };
 export { signIn };
 export { signOut };
