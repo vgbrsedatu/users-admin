@@ -68,14 +68,16 @@ const useWindow = () => {
     window.appRuntime.send('window-open', view);
   };
 
-  const controls = {
-    closeWindow,
-    minimizeWindow,
-    maximizeWindow,
-    openWindow,
+  return {
+    maximize,
+    fullScreen,
+    controls: {
+      closeWindow,
+      minimizeWindow,
+      maximizeWindow,
+      openWindow,
+    },
   };
-
-  return { maximize, fullScreen, controls };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
