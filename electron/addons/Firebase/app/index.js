@@ -44,7 +44,7 @@ const auth = getAuth(app);
 /**
  * The `Firestore` service for the given app.
  *
- * @type {FirebaseFirestore.Firestore}
+ * @constant {FirebaseFirestore.Firestore}
  */
 const firestore = getFirestore(app);
 
