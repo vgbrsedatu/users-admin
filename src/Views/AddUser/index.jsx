@@ -46,7 +46,8 @@ const AddUser = () => {
   });
   const ADDRESS_STATE = fields({ name: 'ADDRESS_STATE', value: user.address.state });
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
     createUser();
   };
 
