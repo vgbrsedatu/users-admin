@@ -107,7 +107,7 @@ const getUser = uid =>
 /**
  * Deletes an existing user.
  *
- * @param {string} uid - The uid corresponding to the user to update.
+ * @param {string} uid - The uid corresponding to the user to delete.
  * @returns {Promise.<string|Error>} - An empty promise fulfilled once the user has been deleted.
  */
 const deleteUser = uid =>
