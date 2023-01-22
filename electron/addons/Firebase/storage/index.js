@@ -1,6 +1,6 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Manages Auth service bound to the provided App.
+ * @file Manages the `firebase.storage` module.
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
