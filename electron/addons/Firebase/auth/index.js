@@ -9,8 +9,7 @@ import { auth } from '../app';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * The `Window` argument allows the dialog to attach itself to a parent
- * window, making it modal.
+ * An object with user properties
  *
  * NOTES:
  *
