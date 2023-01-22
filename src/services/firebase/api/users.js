@@ -1,18 +1,56 @@
-import { getFirestore, getDoc, doc, collection, getDocs } from 'firebase/firestore';
-import app from '../app';
+/**
+ * @author Victor Giovanni Beltrán Rodríguez
+ * @file Manage `users` collection in `firebase`
+ */
 
-const firestore = getFirestore(app);
+// ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT THIRD PARTIES MODULES
+import {
+  collection,
+  doc,
+  getDocs,
+  getDoc,
+  setDoc,
+  deleteDoc,
+  onSnapshot,
+} from 'firebase/firestore';
 
+// » IMPORT MODULES
+import { firestore } from '../app';
+
+// ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const usersReference = collection(firestore, 'users');
-const userReference = uid => doc(firestore, 'users', uid);
-const userSnapshot = uid => getDoc(userReference(uid));
-const usersSnapshot = () => getDocs(usersReference);
+const usersSnapshot = getDocs(usersReference);
 
-const getUser = uid =>
+const userReference = id => doc(firestore, 'users', id);
+const user = {
+  get: id => getDoc(userReference(id)),
+  set: id => setDoc(userReference(id)),
+  delete: id => deleteDoc(userReference(id)),
+};
+
+// ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const getUser = id =>
   new Promise((resolve, reject) => {
-    userSnapshot(uid)
+    user
+      .get(id)
       .then(snapShot => {
-        resolve(snapShot.data());
+        resolve({
+          id,
+          ...snapShot.data(),
+        });
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+
+const deleteUser = id =>
+  new Promise((resolve, reject) => {
+    user
+      .delete(id)
+      .then(() => {
+        resolve(true);
       })
       .catch(err => {
         reject(err);
@@ -21,19 +59,13 @@ const getUser = uid =>
 
 const getUsers = () =>
   new Promise((resolve, reject) => {
-    const documents = [];
-    usersSnapshot()
-      .then(snapShot => {
-        snapShot.forEach(result => {
-          const document = result.data();
-          const data = {
-            id: result.id,
-            ...document,
-          };
-          documents.push(data);
-        });
-        return documents;
-      })
+    usersSnapshot
+      .then(snapShot =>
+        snapShot.docs.map(result => ({
+          id: result.id,
+          ...result.data(),
+        })),
+      )
       .then(docs => {
         resolve(docs);
       })
@@ -42,5 +74,10 @@ const getUsers = () =>
       });
   });
 
+const unSubscribe = (snapshot, error) => onSnapshot(usersReference, snapshot, error);
+
+// ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export { getUser };
+export { deleteUser };
 export { getUsers };
+export { unSubscribe };
