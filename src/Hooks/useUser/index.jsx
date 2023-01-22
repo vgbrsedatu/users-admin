@@ -74,12 +74,13 @@ import * as actions from './actions';
  * The returns value from `useUser`
  *
  * @typedef   {object}              userHook
- * @property  {dispacher}           dispacher   - Auxiliary function for the reducer.
- * @property  {fields}              fields      - Function for managing inputs.
- * @property  {()=>void}            createUser  - Function to create a user.
- * @property  {()=>void}            updatedUser - Function to update a user.
- * @property  {(uid:string)=>void}  deleteUser  - Function to delete a user.
- * @property  {state}               state       - The current state.
+ * @property  {dispacher}           dispacher         - Auxiliary function for the reducer.
+ * @property  {fields}              fields            - Function for managing inputs.
+ * @property  {()=>void}            createUser        - Function to create a user.
+ * @property  {()=>void}            updatedUser       - Function to update a user.
+ * @property  {(uid:string)=>void}  deleteUser        - Function to delete a user.
+ * @property  {(uid:string)=>void}  updatePassword - Function to uptate a user credential.
+ * @property  {state}               state             - The current state.
  */
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -93,7 +94,7 @@ const initial = {
     email: '',
     name: '',
     password: null,
-    photo: '/assets/images/svg/default.svg',
+    photo: '',
     mobile: '',
     role: '',
     verified: '',
@@ -143,9 +144,9 @@ const useUser = uid => {
 
   useEffect(() => {
     const handleEvent = (event, payload) => {
-      dispatch(actions.SET_CREATED, payload.success);
-      dispatch(actions.SET_ERROR, payload.error);
-      dispatch(actions.SET_USER, payload.user);
+      dispatch(actions.SET_CREATED(payload.success));
+      dispatch(actions.SET_ERROR(payload.error));
+      dispatch(actions.SET_USER(payload.user));
     };
     window.appRuntime.subscribe('user:create.reply', handleEvent);
     return () => {
@@ -155,25 +156,36 @@ const useUser = uid => {
 
   useEffect(() => {
     const handleEvent = (event, payload) => {
-      dispatch(actions.SET_UPDATED, payload.success);
-      dispatch(actions.SET_ERROR, payload.error);
-      dispatch(actions.SET_USER, payload.user);
+      dispatch(actions.SET_UPDATED(payload.success));
+      dispatch(actions.SET_ERROR(payload.error));
+      // dispatch(actions.SET_USER(payload.user));
     };
-    window.appRuntime.subscribe('user:updated.reply', handleEvent);
+    window.appRuntime.subscribe('user:update.reply', handleEvent);
     return () => {
-      window.appRuntime.removeAll('user:updated.reply');
+      window.appRuntime.removeAll('user:update.reply');
     };
   }, []);
 
   useEffect(() => {
     const handleEvent = (event, payload) => {
-      dispatch(actions.SET_DELETED, payload.success);
-      dispatch(actions.SET_ERROR, payload.error);
-      dispatch(actions.SET_USER, initial.user);
+      dispatch(actions.SET_DELETED(payload.success));
+      dispatch(actions.SET_ERROR(payload.error));
+      dispatch(actions.SET_USER(initial.user));
     };
     window.appRuntime.subscribe('user:delete.reply', handleEvent);
     return () => {
       window.appRuntime.removeAll('user:delete.reply');
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleEvent = (event, payload) => {
+      dispatch(actions.SET_UPDATED(payload.success));
+      dispatch(actions.SET_ERROR(payload.error));
+    };
+    window.appRuntime.subscribe('user:password.reply', handleEvent);
+    return () => {
+      window.appRuntime.removeAll('user:password.reply');
     };
   }, []);
 
@@ -188,11 +200,10 @@ const useUser = uid => {
       const action = `SET_${NAME}`;
       dispacher(action, VALUE);
     };
-
     return {
       name,
       type: type || 'text',
-      value,
+      value: value || '',
       onChange,
     };
   };
@@ -202,14 +213,18 @@ const useUser = uid => {
   };
 
   const updatedUser = () => {
-    window.appRuntime.send('user:updated', { update: state.update });
+    window.appRuntime.send('user:update', state.user);
   };
 
   const deleteUser = id => {
     window.appRuntime.send('user:delete', id);
   };
 
-  return { dispacher, fields, createUser, updatedUser, deleteUser, state };
+  const updatePassword = ({ id, password }) => {
+    window.appRuntime.send('user:password', { id, password });
+  };
+
+  return { dispacher, fields, createUser, updatedUser, deleteUser, updatePassword, state };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
