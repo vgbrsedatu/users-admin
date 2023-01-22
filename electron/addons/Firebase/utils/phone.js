@@ -38,7 +38,7 @@ const replacer = {
  * @returns {string} The standard phone number.
  * @throws {Error} It will throw an error if the phone format does not match.
  * @example const number = '55 4556 3650';
- * const standar = toStandar(number); // Expected value +525545563650
+ * const standar = standarize(number); // Expected value +525545563650
  *
  */
 const standarize = mobile => {
@@ -56,7 +56,7 @@ const standarize = mobile => {
  * @returns {string} The normar phone number.
  * @throws {Error} It will throw an error if the phone format does not match.
  * @example const number = '+525545563650';
- * const normalize = toNormalize(number); // Expected value 55 4556 3650
+ * const normalize = normalize(number); // Expected value 55 4556 3650
  *
  */
 const normalize = mobile => {
