@@ -56,7 +56,7 @@ const Image = ({ image, toogle }) => (
     <img alt="user profile" src={image} />
     <button
       type="button"
-      className="btn btn--primary"
+      className="btn btn--primary btn--small"
       onClick={() => {
         toogle();
       }}
