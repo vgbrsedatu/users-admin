@@ -505,12 +505,25 @@ div[name="action-con"] {
   display: flex;
   flex: 1 1 auto;
   flex-flow: column nowrap;
-  padding: 15px;
   border-radius: 15px;
   gap: 20px;
 }
 
 .profile__title {
+  text-align: center;
+}
+
+.profile__error {
+  border-radius: 15px;
+  background-color: var(--color-error-container);
+  color: var(--color-on-error-container);
+  text-align: center;
+}
+
+.profile__succes {
+  border-radius: 15px;
+  background-color: var(--color-success-container);
+  color: var(--color-on-success-container);
   text-align: center;
 }
 
@@ -524,8 +537,9 @@ div[name="action-con"] {
 .profile__data {
   display: grid;
   gap: 10px 15px;
+  grid-auto-rows: fit-content(15rem);
   grid-template-columns: minmax(100px, max-content) auto;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .profile__data span:nth-child(odd) {
@@ -555,6 +569,10 @@ div[name="action-con"] {
 .btn--primary {
   background: var(--color-primary);
   color: var(--color-on-primary);
+}
+
+.btn--small {
+  font-size: 0.8em;
 }
 
 .btn-icon {
@@ -664,11 +682,12 @@ form.signup legend {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"] {
   height: 25px;
   padding: 0 15px;
   border-style: none;
-  border-radius: 8px;
+  border-radius: 15px;
   appearance: none;
   background-color: var(--color-background);
   border-image: none;
@@ -677,6 +696,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="text"]:focus-visible,
+input[type="email"]:focus,
+input[type="email"]:focus-visible,
 input[type="password"]:focus,
 input[type="password"]:focus-visible {
   border: none;
