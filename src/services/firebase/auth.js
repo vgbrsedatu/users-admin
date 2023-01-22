@@ -13,6 +13,13 @@ import AuthError from './AuthError';
 
 // ━━ MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
+ * The currently signed-in user (or null).
+ *
+ * @constant {User|null}
+ */
+const current = auth.currentUser;
+
+/**
  * Asynchronously signs in using an email and password.
  *
  * @remarks Fails with an error if the email address and password do not match.
@@ -55,6 +62,7 @@ const signOut = () =>
 const unSubscribe = observer => onAuthStateChanged(auth, observer);
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export { unSubscribe };
+export { current };
 export { signIn };
 export { signOut };
+export { unSubscribe };
