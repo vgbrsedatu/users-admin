@@ -8,7 +8,7 @@
 import { useEffect, useState } from 'react';
 
 // » IMPORT CUSTOM HOOKS
-import { getUsers } from '../services/firebase/api/users';
+import { getUsers, unSubscribe } from '../services/firebase/api/users';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -66,6 +66,16 @@ const useUsers = () => {
       .catch(err => {
         setError(err.message);
       });
+  }, []);
+
+  useEffect(() => {
+    const unsuscribe = unSubscribe(snapshot => {
+      const updtate = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setUsers(updtate);
+    });
+    return () => {
+      unsuscribe();
+    };
   }, []);
 
   return { users, loading, error };
