@@ -26,7 +26,7 @@ const EditUser = () => {
   const { state: id } = useLocation();
   const { uploadFromBlob } = useStorage();
   const { state, updatedUser, dispacher, fields } = useUser(id);
-  const { error, loading, user } = state;
+  const { error, updated, loading, user } = state;
   const NAME = fields({ name: 'NAME', value: user.name });
   const EMAIL = fields({ name: 'EMAIL', value: user.email });
   const MOBILE = fields({ name: 'MOBILE', value: user.mobile });
@@ -52,8 +52,8 @@ const EditUser = () => {
     return <Loading />;
   }
 
-  const onSave = url => {
-    uploadFromBlob('as', url)
+  const onSave = ({ mime, raw }) => {
+    uploadFromBlob({ mime, raw, name: user.id })
       .then(payload => {
         dispacher('SET_PHOTO', payload);
       })
@@ -70,6 +70,7 @@ const EditUser = () => {
       <div className="profile__information">
         <h1 className="profile__title">Informacion del usuario</h1>
         {error && <span className="profile__error">{error}</span>}
+        {updated && <span className="profile__succes">Usuario actualizado</span>}
         <div className="profile__data">
           <span>Nombre:</span>
           <input {...NAME} />
@@ -120,8 +121,8 @@ const EditUser = () => {
           <input {...ADDRESS_STATE} />
         </div>
         <div className="profile__controls">
-          <button type="button" className="btn btn--primary" onClick={updatedUser}>
-            Actualizar Perfil
+          <button type="button" className="btn btn--primary btn--small" onClick={updatedUser}>
+            Actualizar
           </button>
         </div>
       </div>

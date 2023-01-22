@@ -26,7 +26,7 @@ const AddUser = () => {
   const { error, user } = state;
   const NAME = fields({ name: 'NAME', value: user.name });
   const EMAIL = fields({ name: 'EMAIL', value: user.email });
-  const PASSWORD = fields({ name: 'PASSWORD', type: 'password', value: user.password });
+  const PASSWORD = fields({ name: 'PASSWORD', value: user.password });
   const MOBILE = fields({ name: 'MOBILE', value: user.mobile });
   const VERIFIED = fields({ name: 'VERIFIED', value: user.verified });
   const DISABLED = fields({ name: 'DISABLED', value: user.disabled });
@@ -123,7 +123,7 @@ const AddUser = () => {
           </div>
           <div className="profile__controls">
             <button type="submit" className="btn btn--primary">
-              Actualizar Perfil
+              Guardar
             </button>
           </div>
         </form>
