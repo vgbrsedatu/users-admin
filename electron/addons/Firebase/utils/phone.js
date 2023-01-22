@@ -1,11 +1,11 @@
 /**
  * @author Victor Giovanni Beltrán Rodríguez
- * @file Manages MonthError module, used to create all errors specific to
- * the Month class.
+ * @file Manages the `utils.phone` module.
  */
+
 // ━━	CONSTANTS	━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
- * Add description.
+ * Collection of regular expressions to find phone number formats.
  *
  * @private
  * @constant {object} regex
@@ -18,7 +18,7 @@ const regExp = {
 };
 
 /**
- * Add description.
+ * Collection of replacement functions.
  *
  * @private
  * @constant {object} replacer
