@@ -22,10 +22,10 @@
  * @returns {storageHook} An object to manage the users.
  */
 const useStorage = () => {
-  const uploadFromBlob = ({ mime, raw, name }) =>
+  const uploadFromBlob = ({ mime, raw, name, temporary }) =>
     new Promise((resolve, reject) => {
       window.appRuntime
-        .invoke('image:upload', { mime, raw, name })
+        .invoke('image:upload', { mime, raw, name, temporary })
         .then(payload => {
           resolve(payload);
         })
