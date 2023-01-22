@@ -60,6 +60,10 @@ const User = () => {
     navigate('/edit', { state: user.id });
   };
 
+  const toPassword = () => {
+    navigate('/password', { state: user.id });
+  };
+
   return (
     <article id="user" className="profile">
       <figure className="profile__image">
@@ -105,10 +109,13 @@ const User = () => {
           <span>{user.address.state}</span>
         </div>
         <div className="profile__controls">
-          <button type="button" className="btn btn--primary" onClick={deleteuser}>
+          <button type="button" className="btn btn--primary btn--small" onClick={deleteuser}>
             Eliminar Perfil
           </button>
-          <button type="button" className="btn btn--primary" onClick={onClick}>
+          <button type="button" className="btn btn--primary btn--small" onClick={toPassword}>
+            Cambiar Contraseña
+          </button>
+          <button type="button" className="btn btn--primary btn--small" onClick={onClick}>
             Editar Perfil
           </button>
         </div>
