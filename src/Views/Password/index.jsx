@@ -23,10 +23,10 @@ import useUser from '../../Hooks/useUser';
  */
 const Password = () => {
   const { state: id } = useLocation();
-  const { state, dispacher, updatePassword } = useUser(id);
+  const { state, updatePassword } = useUser(id);
   const { error, loading, updated, user } = state;
-  const regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-  const ERROR_MESSAGE = 'Contraseña mayor a seis caracteres, incluyendo letra y un número';
+  const regExp = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
+  const title = 'Contraseña mayor a ocho caracteres, incluyendo letra y un número';
   const password = useField({ name: 'password', type: 'text' });
 
   if (loading) {
@@ -35,11 +35,7 @@ const Password = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (!regExp.test(password.value)) {
-      dispacher('SET_ERROR', ERROR_MESSAGE);
-    } else {
-      updatePassword({ id: user.id, password: password.value });
-    }
+    updatePassword({ id: user.id, password: password.value });
   };
 
   return (
@@ -58,7 +54,7 @@ const Password = () => {
             <span>Email:</span>
             <span>{user.email}</span>
             <span>Password:</span>
-            <input {...password} required />
+            <input {...password} required pattern={regExp} title={title} />
           </div>
           <div className="profile__controls">
             <button type="submit" className="btn btn--primary">

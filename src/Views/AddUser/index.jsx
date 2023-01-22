@@ -24,8 +24,10 @@ const AddUser = () => {
   const { uploadFromBlob } = useStorage();
   const { state, createUser, dispacher, fields } = useUser();
   const { error, user } = state;
+  const regExp = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
+  const title = 'Contraseña mayor a ocho caracteres, incluyendo letra y un número';
   const NAME = fields({ name: 'NAME', value: user.name });
-  const EMAIL = fields({ name: 'EMAIL', value: user.email });
+  const EMAIL = fields({ name: 'EMAIL', value: user.email, type: 'email' });
   const PASSWORD = fields({ name: 'PASSWORD', value: user.password });
   const MOBILE = fields({ name: 'MOBILE', value: user.mobile });
   const VERIFIED = fields({ name: 'VERIFIED', value: user.verified });
@@ -52,7 +54,7 @@ const AddUser = () => {
   };
 
   const onSave = ({ mime, raw }) => {
-    uploadFromBlob({ mime, raw, name: 'temporaly' })
+    uploadFromBlob({ mime, raw, temporary: true })
       .then(payload => {
         dispacher('SET_PHOTO', payload);
       })
@@ -72,13 +74,13 @@ const AddUser = () => {
         <form onSubmit={onSubmit} className="profile__form">
           <div className="profile__data">
             <span>Nombre:</span>
-            <input {...NAME} />
+            <input {...NAME} required />
             <span>Email:</span>
-            <input {...EMAIL} />
+            <input {...EMAIL} required />
             <span>Contraseña:</span>
-            <input {...PASSWORD} />
+            <input {...PASSWORD} required pattern={regExp} title={title} />
             <span>Movil:</span>
-            <input {...MOBILE} />
+            <input {...MOBILE} required pattern="^\d{10}$" title="Sigue este formato 0000000000" />
             <span>Verificado:</span>
             <select {...VERIFIED}>
               <option value>Sí</option>
@@ -99,27 +101,27 @@ const AddUser = () => {
               <option value="subscriber">Suscriptor</option>
             </select>
             <span>Compañia:</span>
-            <input {...COMPANY_NAME} />
+            <input {...COMPANY_NAME} required />
             <span>Puesto:</span>
-            <input {...COMPANY_TITLE} />
+            <input {...COMPANY_TITLE} required />
             <span>Ubicacion:</span>
-            <input {...COMPANY_LOCATION} />
+            <input {...COMPANY_LOCATION} required />
             <span>Departmento:</span>
-            <input {...COMPANY_DEPARTMENT} />
+            <input {...COMPANY_DEPARTMENT} required />
             <span>Calle:</span>
-            <input {...ADDRESS_STREET} />
+            <input {...ADDRESS_STREET} required />
             <span>Numero:</span>
-            <input {...ADDRESS_NUMBER} />
+            <input {...ADDRESS_NUMBER} required />
             <span>Asentamiento:</span>
-            <input {...ADDRESS_SETTLEMENT} />
+            <input {...ADDRESS_SETTLEMENT} required />
             <span>Codigo Postal:</span>
-            <input {...ADDRESS_POSTAL} />
+            <input {...ADDRESS_POSTAL} required />
             <span>Localidad:</span>
-            <input {...ADDRESS_LOCALITY} />
+            <input {...ADDRESS_LOCALITY} required />
             <span>Municipio:</span>
-            <input {...ADDRESS_MUNICIPALITY} />
+            <input {...ADDRESS_MUNICIPALITY} required />
             <span>Estado:</span>
-            <input {...ADDRESS_STATE} />
+            <input {...ADDRESS_STATE} required />
           </div>
           <div className="profile__controls">
             <button type="submit" className="btn btn--primary">
