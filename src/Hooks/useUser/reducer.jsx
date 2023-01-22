@@ -33,7 +33,7 @@ const reducer = (state, action) => {
     case types.SET_DELETED:
       return { ...state, deleted: payload };
     case types.SET_USER:
-      return { ...state, user: payload };
+      return { ...state, user: { ...payload } };
     case types.SET_NAME:
       return { ...state, user: { ...state.user, name: payload } };
     case types.SET_EMAIL:
