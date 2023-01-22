@@ -94,7 +94,7 @@ const initial = {
     email: '',
     name: '',
     password: null,
-    photo: '',
+    photo: null,
     mobile: '',
     role: '',
     verified: '',
