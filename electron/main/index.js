@@ -399,10 +399,10 @@ ipcMain.on('window-close', event => {
 });
 
 /**
- * Listen to `window-close` channel.
+ * Listen to `window-open` channel.
  *
  * @type {ipcMain} - Electron API
- * @listens ipcMain#owindow-close
+ * @listens ipcMain#window-open
  */
 ipcMain.on('window-open', (event, view) => {
   const sender = BrowserWindow.fromWebContents(event.sender);
@@ -485,10 +485,10 @@ ipcMain.on('theme:choose', (event, choose) => {
 });
 
 /**
- * Listen to `theme-mode:toggle` channel.
+ * Listen to `user:delete` channel.
  *
  * @type {ipcMain} - Electron API
- * @listens ipcMain#theme-mode:toggle
+ * @listens ipcMain#user:delete
  */
 ipcMain.on('user:delete', (event, id) => {
   const response = system.dialog.sync.message({
@@ -512,38 +512,73 @@ ipcMain.on('user:delete', (event, id) => {
 });
 
 /**
- * Listen to `theme-mode:toggle` channel.
+ * Listen to `user:create` channel.
  *
  * @type {ipcMain} - Electron API
- * @listens ipcMain#theme-mode:toggle
+ * @listens ipcMain#user:create
  */
-ipcMain.on('user:add', (event, payload) => {
-  addons.firebase.addUser(payload);
+ipcMain.on('user:create', (event, payload) => {
+  // addons.firebase.createUser(payload);
+  services.logger.debug(payload);
 });
 
 /**
- * Listen to `theme-mode:toggle` channel.
+ * Listen to `user:update` channel.
  *
  * @type {ipcMain} - Electron API
- * @listens ipcMain#theme-mode:toggle
+ * @listens ipcMain#user:update
  */
-ipcMain.on('user:edit', (event, payload) => {
-  addons.firebase.addUser(payload);
+ipcMain.on('user:update', (event, payload) => {
+  services.logger.debug(payload);
+  addons.firebase
+    .updateUser(payload)
+    .then(() => {
+      services.logger.debug('User updated');
+      event.reply('user:update.reply', { success: true, error: false });
+    })
+    .catch(err => {
+      services.logger.debug('User not updated');
+      services.logger.debug(err);
+      event.reply('user:update.reply', { success: false, error: err.message });
+    });
 });
 
 /**
- * Listen to `theme-mode:toggle` channel.
+ * Listen to `user:password` channel.
  *
  * @type {ipcMain} - Electron API
- * @listens ipcMain#theme-mode:toggle
+ * @listens ipcMain#user:password
+ */
+ipcMain.on('user:password', (event, payload) => {
+  services.logger.debug(payload);
+  addons.firebase
+    .updatePassword(payload)
+    .then(() => {
+      services.logger.debug('Password updated');
+      event.reply('user:password.reply', { success: true, error: false });
+    })
+    .catch(err => {
+      services.logger.debug('Password not updated');
+      services.logger.debug(err);
+      event.reply('user:password.reply', { success: false, error: err.message });
+    });
+});
+
+/**
+ * Listen to `image:upload` channel.
+ *
+ * @type {ipcMain} - Electron API
+ * @listens ipcMain#image:upload
  */
 ipcMain.handle('image:upload', (event, { mime, raw, name }) => { // eslint-disable-line arrow-body-style, prettier/prettier
   return new Promise((resolve, reject) => {
     addons.firebase
       .uploadFromBlob({ mime, raw, name })
       .then(result => {
-        resolve({ success: true, error: false, link: result });
+        resolve(result);
       })
-      .catch(err => reject(err.message));
+      .catch(err => {
+        reject(err.message);
+      });
   });
 });
