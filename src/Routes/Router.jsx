@@ -12,6 +12,7 @@ import Protected from './Protected';
 import AddUser from '../Views/AddUser';
 import EditUser from '../Views/EditUser';
 import User from '../Views/User';
+import Password from '../Views/Password';
 import Users from '../Views/Users';
 import Signin from '../Views/Signin';
 
@@ -77,6 +78,21 @@ const UsersProtected = () => (
 );
 
 /**
+ * The `PasswordProtected` component, is a view component protected by the
+ * router.
+ *
+ * It must be used in the router: `path="credential"`
+ *
+ * @component
+ * @returns {JSX.Element} The `PasswordProtected` components.
+ */
+const PasswordProtected = () => (
+  <Protected>
+    <Password />
+  </Protected>
+);
+
+/**
  * The `Router` component, is in charge of routing the application.
  *
  * @component
@@ -89,6 +105,7 @@ const Router = () => (
       <Route path="add" element={<AddUserProtected />} />
       <Route path="edit" element={<EditUserProtected />} />
       <Route path="user" element={<UserProtected />} />
+      <Route path="password" element={<PasswordProtected />} />
       <Route path="signin" element={<Signin />} />
     </Routes>
   </section>
