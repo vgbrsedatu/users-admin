@@ -8,36 +8,19 @@
 import path from 'path';
 
 // » IMPORT THIRD PARTIES MODULES
-import mimeTypes from 'mime-types';
+import { v4 as uuid } from 'uuid';
 
 // » IMPORT MODULES
 import { storage } from '../app';
+import * as mimeType from '../utils/mime';
 
 // ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/**
- * The `base64MimeType` function returns the mime type from base64 encoded file.
- *
- * @param {string} encoded - A base64 encoded file.
- * @returns {string} A string with mime type value.
- * @example const mime = base64MimeType('data:image/jpeg;base64,/9j/4AAQSkZJRgA...'); // The expected value `image/jpeg`
- *
- */
-const base64MimeType = encoded => {
-  const regExps = /data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/;
-  if (typeof encoded !== 'string') {
-    return null;
-  }
-
-  const mime = encoded.match(regExps);
-
-  if (!(mime && mime.length)) {
-    return null;
-  }
-
-  return mime[1];
-};
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+/**
+ * A reference to a Cloud Storage bucket.
+ *
+ * @constant {Bucket}
+ */
 const bucket = storage.bucket();
 
 // ━━ MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -57,6 +40,16 @@ const uploadFiles = (file, uid) =>
       .upload(file, {
         destination: `users/${uid}${extension}`,
         public: true,
+        resumable: false,
+        gzip: true,
+        validation: 'crc32c',
+        cacheControl: 'public, max-age=31536000',
+        metadata: {
+          contentType: mimeType.encode(extension),
+          metadata: {
+            firebaseStorageDownloadTokens: uuid(),
+          },
+        },
       })
       .then(uploaded => {
         const imageUrl = uploaded[1].mediaLink;
@@ -74,23 +67,34 @@ const uploadFiles = (file, uid) =>
  * @param {object} options - Configuration options.
  * @param {string} [options.mime] - The mime type of file.
  * @param {string} options.raw - The blob file.
- * @param {string} options.uid -  An uid for the file.
+ * @param {string} [options.uid] -  An uid for the file.
+ * @param {boolean} [options.temporary] -  If the file will be temporary.
  * @returns {Promise.<string|Error>} A string with url of file.
  * @example uploadFromBlob({ mime, raw, uid }); // The expected value `image/jpeg`
  *
  */
-const uploadFromBlob = ({ mime, raw, uid }) =>
+const uploadFromBlob = ({ mime, raw, name, temporary = false } = {}) =>
   new Promise((resolve, reject) => {
     const options = {
       public: true,
       resumable: false,
-      metadata: { contentType: base64MimeType(raw) || mime },
-      validation: false,
+      gzip: true,
+      validation: 'crc32c',
+      cacheControl: 'public, max-age=31536000',
+      metadata: {
+        contentType: mime || mimeType.fromBase64(raw),
+        metadata: {
+          firebaseStorageDownloadTokens: uuid(),
+        },
+      },
     };
-    const extension = mimeTypes.extension('image/jpeg');
+
+    const extension = mimeType.decode('image/jpeg');
     const encoded = raw.replace(/^data:\w+\/\w+;base64,/, '');
     const fileBuffer = Buffer.from(encoded, 'base64');
-    const file = bucket.file(`users/${uid}.${extension}`);
+    const file = temporary
+      ? bucket.file(`users/temporary/temp.${extension}`)
+      : bucket.file(`users/${name}.${extension}`);
     file
       .save(fileBuffer, options)
       .then(async () => {
