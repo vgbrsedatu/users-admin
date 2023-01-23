@@ -32,6 +32,22 @@ const replacer = {
 
 // ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
+ * The `check` function returns the format type of the phone number.
+ *
+ * @param {string} mobile - The phone number.
+ * @returns {string|null} The format type of the phone number.
+ * @example const number = '55 4556 3650';
+ * const standar = check(number); // 'NORMAL'
+ *
+ */
+const check = mobile => {
+  if (regExp.standar.test(mobile)) return 'STANDAR';
+  if (regExp.normal.test(mobile)) return 'NORMAL';
+  if (regExp.user.test(mobile)) return 'USER';
+  return null;
+};
+
+/**
  * The `standarize` function returns standardizes a phone number.
  *
  * @param {string} mobile - The phone number.
@@ -42,11 +58,20 @@ const replacer = {
  *
  */
 const standarize = mobile => {
-  if (!regExp.normal.test(mobile)) {
-    throw new Error('The number format is not correct');
+  const type = check(mobile);
+  if (!type) {
+    throw new Error('No format does not match');
   }
-  const replaced = mobile.replace(regExp.normal, replacer.normalize);
-  return `+52${replaced}`;
+  if (type === 'USER') {
+    const normalized = mobile.replace(regExp.user, replacer.user);
+    const replaced = normalized.replace(regExp.normal, replacer.normalize);
+    return `+52${replaced}`;
+  }
+  if (type === 'NORMAL') {
+    const replaced = mobile.replace(regExp.normal, replacer.normalize);
+    return `+52${replaced}`;
+  }
+  return mobile;
 };
 
 /**
@@ -60,30 +85,22 @@ const standarize = mobile => {
  *
  */
 const normalize = mobile => {
-  if (!regExp.standar.test(mobile)) {
-    throw new Error('The number format is not correct');
+  const type = check(mobile);
+  if (!type) {
+    console.error(type);
+    console.error('normalize');
+    throw new Error('No format does not match');
   }
-  return mobile.replace(regExp.standar, replacer.standar);
-};
-
-/**
- * The `toNormal` function returns normalizes a phone number.
- *
- * @param {string} mobile - The phone number.
- * @returns {string} The normar phone number.
- * @throws {Error} It will throw an error if the phone format does not match.
- * @example const number = '5545563650';
- * const normal = toNormal(number); // Expected value 55 4556 3650
- *
- */
-const toNormal = mobile => {
-  if (!regExp.user.test(mobile)) {
-    throw new Error('The number format is not correct');
+  if (type === 'USER') {
+    return mobile.replace(regExp.user, replacer.user);
   }
-  return mobile.replace(regExp.user, replacer.user);
+  if (type === 'STANDAR') {
+    return mobile.replace(regExp.standar, replacer.standar);
+  }
+  return mobile;
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+export { check };
 export { standarize };
 export { normalize };
-export { toNormal };
