@@ -28,8 +28,8 @@ const EditUser = () => {
   const { state, updatedUser, dispacher, fields } = useUser(id);
   const { error, updated, loading, user } = state;
   const NAME = fields({ name: 'NAME', value: user.name });
-  const EMAIL = fields({ name: 'EMAIL', value: user.email });
-  const MOBILE = fields({ name: 'MOBILE', value: user.mobile });
+  const EMAIL = fields({ name: 'EMAIL', value: user.email, type: 'email' });
+  const PHONE = fields({ name: 'PHONE', value: user.phone });
   const VERIFIED = fields({ name: 'VERIFIED', value: user.verified });
   const DISABLED = fields({ name: 'DISABLED', value: user.disabled });
   const ROLE = fields({ name: 'ROLE', value: user.role });
@@ -52,6 +52,11 @@ const EditUser = () => {
     return <Loading />;
   }
 
+  const onSubmit = e => {
+    e.preventDefault();
+    updatedUser();
+  };
+
   const onSave = ({ mime, raw }) => {
     uploadFromBlob({ mime, raw, name: user.id })
       .then(payload => {
@@ -71,60 +76,62 @@ const EditUser = () => {
         <h1 className="profile__title">Informacion del usuario</h1>
         {error && <span className="profile__error">{error}</span>}
         {updated && <span className="profile__succes">Usuario actualizado</span>}
-        <div className="profile__data">
-          <span>Nombre:</span>
-          <input {...NAME} />
-          <span>Email:</span>
-          <input {...EMAIL} />
-          <span>Movil:</span>
-          <input {...MOBILE} />
-          <span>Verificado:</span>
-          <select {...VERIFIED}>
-            <option value>Sí</option>
-            <option value={false}>No</option>
-          </select>
-          <span>Perfil activo:</span>
-          <select {...DISABLED}>
-            <option value="Sí">Sí</option>
-            <option value="No">No</option>
-          </select>
-          <span>Role:</span>
-          <select {...ROLE}>
-            <option value="superadmin">Super Administrador</option>
-            <option value="administrator">Administrador</option>
-            <option value="editor">Editor</option>
-            <option value="author">Autor</option>
-            <option value="contributor">Colaborador</option>
-            <option value="subscriber">Suscriptor</option>
-          </select>
-          <span>Compañia:</span>
-          <input {...COMPANY_NAME} />
-          <span>Puesto:</span>
-          <input {...COMPANY_TITLE} />
-          <span>Ubicacion:</span>
-          <input {...COMPANY_LOCATION} />
-          <span>Departmento:</span>
-          <input {...COMPANY_DEPARTMENT} />
-          <span>Calle:</span>
-          <input {...ADDRESS_STREET} />
-          <span>Numero:</span>
-          <input {...ADDRESS_NUMBER} />
-          <span>Asentamiento:</span>
-          <input {...ADDRESS_SETTLEMENT} />
-          <span>Codigo Postal:</span>
-          <input {...ADDRESS_POSTAL} />
-          <span>Localidad:</span>
-          <input {...ADDRESS_LOCALITY} />
-          <span>Municipio:</span>
-          <input {...ADDRESS_MUNICIPALITY} />
-          <span>Estado:</span>
-          <input {...ADDRESS_STATE} />
-        </div>
-        <div className="profile__controls">
-          <button type="button" className="btn btn--primary btn--small" onClick={updatedUser}>
-            Actualizar
-          </button>
-        </div>
+        <form onSubmit={onSubmit} className="profile__form">
+          <div className="profile__data">
+            <span>Nombre:</span>
+            <input {...NAME} required />
+            <span>Email:</span>
+            <input {...EMAIL} required />
+            <span>Movil:</span>
+            <input {...PHONE} pattern="^\d{10}$" title="Sigue este formato 0000000000" required />
+            <span>Verificado:</span>
+            <select {...VERIFIED}>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+            <span>Perfil inactivo:</span>
+            <select {...DISABLED}>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
+            </select>
+            <span>Role:</span>
+            <select {...ROLE}>
+              <option value="superadmin">Super Administrador</option>
+              <option value="administrator">Administrador</option>
+              <option value="editor">Editor</option>
+              <option value="author">Autor</option>
+              <option value="contributor">Colaborador</option>
+              <option value="subscriber">Suscriptor</option>
+            </select>
+            <span>Compañia:</span>
+            <input {...COMPANY_NAME} required />
+            <span>Puesto:</span>
+            <input {...COMPANY_TITLE} required />
+            <span>Ubicacion:</span>
+            <input {...COMPANY_LOCATION} required />
+            <span>Departmento:</span>
+            <input {...COMPANY_DEPARTMENT} required />
+            <span>Calle:</span>
+            <input {...ADDRESS_STREET} required />
+            <span>Numero:</span>
+            <input {...ADDRESS_NUMBER} required />
+            <span>Asentamiento:</span>
+            <input {...ADDRESS_SETTLEMENT} required />
+            <span>Codigo Postal:</span>
+            <input {...ADDRESS_POSTAL} required />
+            <span>Localidad:</span>
+            <input {...ADDRESS_LOCALITY} />
+            <span>Municipio:</span>
+            <input {...ADDRESS_MUNICIPALITY} required />
+            <span>Estado:</span>
+            <input {...ADDRESS_STATE} required />
+          </div>
+          <div className="profile__controls">
+            <button type="submit" className="btn btn--primary btn--small">
+              Guardar
+            </button>
+          </div>
+        </form>
       </div>
     </article>
   );

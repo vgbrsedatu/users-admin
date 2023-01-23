@@ -77,8 +77,8 @@ const User = () => {
           <span>{user.name}</span>
           <span>Email:</span>
           <span>{user.email}</span>
-          <span>Movil:</span>
-          <span>{user.mobile}</span>
+          <span>Teléfono:</span>
+          <span>{user.phone}</span>
           <span>Verificado:</span>
           <span>{user.verified ? 'Sí' : 'No'}</span>
           <span>Perfil activo:</span>

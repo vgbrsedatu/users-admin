@@ -23,13 +23,13 @@ import useStorage from '../../Hooks/useStorage';
 const AddUser = () => {
   const { uploadFromBlob } = useStorage();
   const { state, createUser, dispacher, fields } = useUser();
-  const { error, user } = state;
+  const { error, user, created } = state;
   const regExp = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
   const title = 'Contraseña mayor a ocho caracteres, incluyendo letra y un número';
   const NAME = fields({ name: 'NAME', value: user.name });
   const EMAIL = fields({ name: 'EMAIL', value: user.email, type: 'email' });
   const PASSWORD = fields({ name: 'PASSWORD', value: user.password });
-  const MOBILE = fields({ name: 'MOBILE', value: user.mobile });
+  const PHONE = fields({ name: 'PHONE', value: user.phone });
   const VERIFIED = fields({ name: 'VERIFIED', value: user.verified });
   const DISABLED = fields({ name: 'DISABLED', value: user.disabled });
   const ROLE = fields({ name: 'ROLE', value: user.role });
@@ -71,6 +71,7 @@ const AddUser = () => {
       <div className="profile__information">
         <h1 className="profile__title">Informacion del usuario</h1>
         {error && <span className="profile__error">{error}</span>}
+        {created && <span className="profile__succes">Usuario actualizado</span>}
         <form onSubmit={onSubmit} className="profile__form">
           <div className="profile__data">
             <span>Nombre:</span>
@@ -79,8 +80,8 @@ const AddUser = () => {
             <input {...EMAIL} required />
             <span>Contraseña:</span>
             <input {...PASSWORD} required pattern={regExp} title={title} />
-            <span>Movil:</span>
-            <input {...MOBILE} required pattern="^\d{10}$" title="Sigue este formato 0000000000" />
+            <span>Teléfono:</span>
+            <input {...PHONE} required pattern="^\d{10}$" title="Sigue este formato 0000000000" />
             <span>Verificado:</span>
             <select {...VERIFIED}>
               <option value>Sí</option>
@@ -124,7 +125,7 @@ const AddUser = () => {
             <input {...ADDRESS_STATE} required />
           </div>
           <div className="profile__controls">
-            <button type="submit" className="btn btn--primary">
+            <button type="submit" className="btn btn--primary btn--small">
               Guardar
             </button>
           </div>
