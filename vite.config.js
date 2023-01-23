@@ -72,7 +72,7 @@ const viteConfiguration = defineConfig({
     }),
     viteStaticCopy(plugins.viteStaticCopy),
   ],
-  clearScreen: false,
+  clearScreen: true,
 });
 
 //  ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
