@@ -518,8 +518,18 @@ ipcMain.on('user:delete', (event, id) => {
  * @listens ipcMain#user:create
  */
 ipcMain.on('user:create', (event, payload) => {
-  // addons.firebase.createUser(payload);
-  services.logger.debug(payload);
+  // services.logger.debug(payload);
+  addons.firebase
+    .createUser(payload)
+    .then(() => {
+      services.logger.debug('User created');
+      event.reply('user:create.reply', { success: true, error: false });
+    })
+    .catch(err => {
+      services.logger.debug('User not created');
+      services.logger.debug(err);
+      event.reply('user:create.reply', { success: false, error: err.message });
+    });
 });
 
 /**
@@ -529,7 +539,6 @@ ipcMain.on('user:create', (event, payload) => {
  * @listens ipcMain#user:update
  */
 ipcMain.on('user:update', (event, payload) => {
-  services.logger.debug(payload);
   addons.firebase
     .updateUser(payload)
     .then(() => {
