@@ -249,7 +249,7 @@ const packager = {
     '^/src',
     '^/test',
     '.editorconfig',
-    '.env',
+    '^.env',
     '.eslintignore',
     '.eslintrc.json',
     '.gitattributes',
