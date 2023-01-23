@@ -93,12 +93,12 @@ const initial = {
   user: {
     email: '',
     name: '',
-    password: null,
+    password: '',
     photo: null,
     phone: '',
-    role: '',
-    verified: '',
-    disabled: '',
+    role: 'subscriber',
+    verified: 'false',
+    disabled: 'false',
     company: {
       name: '',
       department: '',
