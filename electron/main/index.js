@@ -74,64 +74,6 @@ if (ON_DEVELOPMENT) {
   process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
 }
 // ━━ FUNCTIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-/**
- * The`createWindow()` function create and control browser windows.
- *
- * NOTE: This function cannot be used until the `ready` event of the `app` module
- * is emitted.
- *
- * @private
- * @returns {BrowserWindow} A BrowserWindow.
- * @example createWindow();
- *
- */
-const createWindow = () => {
-  // » Create the browser window.
-  const window = new BrowserWindow({
-    width: 850,
-    height: 650,
-    minWidth: 850,
-    minHeight: 650,
-    resizable: true,
-    frame: false,
-    titleBarStyle: 'hidden',
-    title: app.getName(),
-    show: false,
-    transparent: false,
-    hasShadow: false,
-    icon: icons.app,
-    webPreferences: {
-      nodeIntegration: false,
-      contextIsolation: true,
-      sandbox: false,
-      preload: PRELOAD_PATH,
-    },
-  });
-
-  window.webContents.on('did-finish-load', () => {
-    if (ON_DEVELOPMENT) {
-      window.webContents.once('devtools-opened', () => window.focus());
-      window.webContents.openDevTools({ mode: 'undocked' });
-    }
-  });
-
-  // » Load the index.html of the app.
-  window.loadURL(WINDOW_URL);
-
-  // » Emitted when the web page has been rendered (while not being shown)
-  // » and window can be displayed without a visual flash.
-  window.once('ready-to-show', () => {
-    window.show();
-  });
-
-  window.on('enter-full-screen', () => window.webContents.send('window-fullscreen', true));
-  window.on('leave-full-screen', () => window.webContents.send('window-fullscreen', false));
-  window.on('maximize', () => window.webContents.send('window-maximize', true));
-  window.on('unmaximize', () => window.webContents.send('window-maximize', false));
-
-  return window;
-};
-
 // ━━ APPLICATION SECURITY SETTINGS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » Default Squirrel.Windows event handler for main procces.
 services.squirrel.startup(app);
@@ -175,7 +117,7 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     // » On macOS it's common to re-create a window in the app when the
     // » dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) system.window.main(windowSetting);
   });
 });
 
