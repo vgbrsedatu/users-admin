@@ -56,7 +56,7 @@ const Users = () => {
               <th>Nombre</th>
               <th>Role</th>
               <th>Verificado</th>
-              <th>Activo</th>
+              <th>Inactivo</th>
               <th>Perfil</th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ const Users = () => {
                 <td>{user.name}</td>
                 <td>{roles[user.role]}</td>
                 <td className="center">{user.verified ? 'Si' : 'No'}</td>
-                <td className="center">{user.disabled ? 'No' : 'Si'}</td>
+                <td className="center">{user.disabled ? 'Si' : 'No'}</td>
                 <td className="center">
                   <button type="button" className="btn-icon" onClick={() => toProfile(user.id)}>
                     <i className="material-icons">person</i>
