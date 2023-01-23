@@ -60,15 +60,10 @@ listed in the manifest file if not provided.
 ```batch
   assets
     └── icons
-        ├── 1024x1024.png
-        ├── 512x512.png
-        ├── 256x256.png
-        ├── 128x128.png
-        ├── 96x96.png
-        ├── 64x64.png
-        ├── 48x48.png
-        ├── 32x32.png
-        ├── 24x24.png
-        ├── 16x16.png
-        └── icon.ico
+        ├── icon.about.png
+        ├── icon.app.ico
+        ├── icon.error.ico
+        ├── icon.information.ico
+        ├── icon.success.ico
+        └── icon.warning.ico
 ```
