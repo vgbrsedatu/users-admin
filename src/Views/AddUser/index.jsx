@@ -4,12 +4,14 @@
  */
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// » IMPORT REACT MODULES
+import { useState } from 'react';
+
 // » IMPORT COMPONENT
 import AvatarImage from '../../Components/AvatarImage';
 
 // » IMPORT CUSTOM HOOKS
 import useUser from '../../Hooks/useUser';
-import useStorage from '../../Hooks/useStorage';
 
 // ━━ CONSTANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -21,7 +23,7 @@ import useStorage from '../../Hooks/useStorage';
  * @returns {JSX.Element} The `AddUser` components.
  */
 const AddUser = () => {
-  const { uploadFromBlob } = useStorage();
+  const [src, setSrc] = useState('/assets/images/svg/default.svg');
   const { state, createUser, dispacher, fields } = useUser();
   const { error, user, created } = state;
   const regExp = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
@@ -54,19 +56,14 @@ const AddUser = () => {
   };
 
   const onSave = ({ mime, raw }) => {
-    uploadFromBlob({ mime, raw, temporary: true })
-      .then(payload => {
-        dispacher('SET_PHOTO', payload);
-      })
-      .catch(err => {
-        dispacher('SET_ERROR', err);
-      });
+    dispacher('SET_PHOTO', { mime, raw });
+    setSrc(raw);
   };
 
   return (
     <article id="edit-users" className="profile">
       <figure className="profile__image">
-        <AvatarImage onSave={onSave} />
+        <AvatarImage onSave={onSave} image={src} />
       </figure>
       <div className="profile__information">
         <h1 className="profile__title">Informacion del usuario</h1>
@@ -84,13 +81,13 @@ const AddUser = () => {
             <input {...PHONE} required pattern="^\d{10}$" title="Sigue este formato 0000000000" />
             <span>Verificado:</span>
             <select {...VERIFIED}>
-              <option value>Sí</option>
-              <option value={false}>No</option>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
             </select>
-            <span>Perfil activo:</span>
+            <span>Perfil inactivo:</span>
             <select {...DISABLED}>
-              <option value="Sí">Sí</option>
-              <option value="No">No</option>
+              <option value="true">Sí</option>
+              <option value="false">No</option>
             </select>
             <span>Role:</span>
             <select {...ROLE}>
@@ -118,7 +115,7 @@ const AddUser = () => {
             <span>Codigo Postal:</span>
             <input {...ADDRESS_POSTAL} required />
             <span>Localidad:</span>
-            <input {...ADDRESS_LOCALITY} required />
+            <input {...ADDRESS_LOCALITY} />
             <span>Municipio:</span>
             <input {...ADDRESS_MUNICIPALITY} required />
             <span>Estado:</span>
