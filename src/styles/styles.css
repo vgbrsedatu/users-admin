@@ -2,7 +2,7 @@
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url("./assets/fonts/Material-Icons.woff2") format("woff2");
+  src: url("/assets/fonts/Material-Icons.woff2") format("woff2");
 }
 
 @font-face {
@@ -10,7 +10,7 @@
   font-family: "Segoe MDL2";
   font-style: normal;
   font-weight: 400;
-  src: url("./assets/fonts/Segoe-MDL2.ttf") format("opentype");
+  src: url("/assets/fonts/Segoe-MDL2.ttf") format("opentype");
 }
 
 :root {
