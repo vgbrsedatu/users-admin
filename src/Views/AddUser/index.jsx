@@ -68,7 +68,7 @@ const AddUser = () => {
       <div className="profile__information">
         <h1 className="profile__title">Informacion del usuario</h1>
         {error && <span className="profile__error">{error}</span>}
-        {created && <span className="profile__succes">Usuario actualizado</span>}
+        {created && <span className="profile__succes">Usuario Creado</span>}
         <form onSubmit={onSubmit} className="profile__form">
           <div className="profile__data">
             <span>Nombre:</span>
