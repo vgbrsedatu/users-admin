@@ -570,10 +570,10 @@ ipcMain.on('user:password', (event, payload) => {
  * @type {ipcMain} - Electron API
  * @listens ipcMain#image:upload
  */
-ipcMain.handle('image:upload', (event, { mime, raw, name }) => { // eslint-disable-line arrow-body-style, prettier/prettier
+ipcMain.handle('image:upload', (event, { mime, raw, name, temporary }) => { // eslint-disable-line arrow-body-style, prettier/prettier
   return new Promise((resolve, reject) => {
     addons.firebase
-      .uploadFromBlob({ mime, raw, name })
+      .uploadFromBlob({ mime, raw, name, temporary })
       .then(result => {
         resolve(result);
       })
