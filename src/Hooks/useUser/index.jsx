@@ -146,7 +146,6 @@ const useUser = uid => {
     const handleEvent = (event, payload) => {
       dispatch(actions.SET_CREATED(payload.success));
       dispatch(actions.SET_ERROR(payload.error));
-      dispatch(actions.SET_USER(payload.user));
     };
     window.appRuntime.subscribe('user:create.reply', handleEvent);
     return () => {
