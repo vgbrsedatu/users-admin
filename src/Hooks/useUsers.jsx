@@ -8,7 +8,7 @@
 import { useEffect, useState } from 'react';
 
 // » IMPORT CUSTOM HOOKS
-import { getUsers, unSubscribe } from '../services/firebase/api/users';
+import { unSubscribe } from '../services/firebase/api/users';
 
 // ━━ TYPE DEFINITIONS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
@@ -42,7 +42,6 @@ import { getUsers, unSubscribe } from '../services/firebase/api/users';
  *
  * @typedef   {object}        usersHook
  * @property  {boolean}       loading   - The initial value is `false`, it changes when the `useUsers` hook finishes loading the `users`.
- * @property  {false|Error}   error     - The initial value is `false`, it changes if there was a problem loading users.
  * @property  {Array.<user>}  users     - The collection of users.
  */
 
@@ -55,30 +54,19 @@ import { getUsers, unSubscribe } from '../services/firebase/api/users';
 const useUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    getUsers()
-      .then(response => {
-        setUsers(response);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err.message);
-      });
-  }, []);
 
   useEffect(() => {
     const unsuscribe = unSubscribe(snapshot => {
       const updtate = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setUsers(updtate);
+      setLoading(false);
     });
     return () => {
       unsuscribe();
     };
   }, []);
 
-  return { users, loading, error };
+  return { users, loading };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
