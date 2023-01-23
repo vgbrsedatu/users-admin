@@ -56,7 +56,6 @@ const uploadFiles = (file, uid) =>
         resolve(imageUrl);
       })
       .catch(err => {
-        console.error(err.message);
         reject(err.message);
       });
   });

@@ -87,8 +87,6 @@ const standarize = mobile => {
 const normalize = mobile => {
   const type = check(mobile);
   if (!type) {
-    console.error(type);
-    console.error('normalize');
     throw new Error('No format does not match');
   }
   if (type === 'USER') {
