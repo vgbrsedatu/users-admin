@@ -494,6 +494,8 @@ p {
 .profile__crooper {
   width: 250px;
   height: 250px !important;
+  border-radius: 15px;
+  background-color: var(--color-background) !important;
 }
 
 div[name="action-con"] {
