@@ -40,8 +40,8 @@ const reducer = (state, action) => {
       return { ...state, user: { ...state.user, email: payload } };
     case types.SET_PASSWORD:
       return { ...state, user: { ...state.user, password: payload } };
-    case types.SET_MOBILE:
-      return { ...state, user: { ...state.user, mobile: payload } };
+    case types.SET_PHONE:
+      return { ...state, user: { ...state.user, phone: payload } };
     case types.SET_PHOTO:
       return { ...state, user: { ...state.user, photo: payload } };
     case types.SET_VERIFIED:

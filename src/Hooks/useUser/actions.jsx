@@ -141,8 +141,8 @@ const SET_PASSWORD = payload => ({
  * @param {string} payload.type - Type of action to be executed in the reducer.
  * @param {string} payload.payload - The new value that the state will take.
  */
-const SET_MOBILE = payload => ({
-  type: types.SET_MOBILE,
+const SET_PHONE = payload => ({
+  type: types.SET_PHONE,
   payload,
 });
 
@@ -338,7 +338,7 @@ export { SET_USER };
 export { SET_NAME };
 export { SET_EMAIL };
 export { SET_PASSWORD };
-export { SET_MOBILE };
+export { SET_PHONE };
 export { SET_PHOTO };
 export { SET_VERIFIED };
 export { SET_DISABLED };

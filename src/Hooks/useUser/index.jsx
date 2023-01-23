@@ -95,7 +95,7 @@ const initial = {
     name: '',
     password: null,
     photo: null,
-    mobile: '',
+    phone: '',
     role: '',
     verified: '',
     disabled: '',
@@ -203,7 +203,7 @@ const useUser = uid => {
     return {
       name,
       type: type || 'text',
-      value: value || '',
+      value,
       onChange,
     };
   };
