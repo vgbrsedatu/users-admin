@@ -128,7 +128,7 @@ AvatarImage.propTypes = {
 };
 
 AvatarImage.defaultProps = {
-  image: '/assets/images/svg/default.svg',
+  image: 'assets/images/svg/default.svg',
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

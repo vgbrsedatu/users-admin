@@ -23,7 +23,7 @@ import useUser from '../../Hooks/useUser';
  * @returns {JSX.Element} The `AddUser` components.
  */
 const AddUser = () => {
-  const [src, setSrc] = useState('/assets/images/svg/default.svg');
+  const [src, setSrc] = useState('assets/images/svg/default.svg');
   const { state, createUser, dispacher, fields } = useUser();
   const { error, user, created } = state;
   const regExp = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
