@@ -21,7 +21,7 @@ import * as actions from './actions';
  * @property  {string}  name                  - User name.
  * @property  {string}  password              - User password.
  * @property  {string}  phone                 - User phone.
- * @property  {boolean} emailVerified         - User emailVerified.
+ * @property  {boolean} verified              - User emailVerified.
  * @property  {boolean} disabled              - User disabled.
  * @property  {string}  role                  - User role.
  * @property  {object}  company               - Information about User company.
