@@ -10,9 +10,9 @@ import { useLocation } from 'react-router-dom';
 
 // » IMPORT COMPONENTS
 import TitleBar from './TitleBar';
+import Container from './Container';
 
 // » IMPORT CUSTOM HOOKS
-import Container from './Container';
 
 // ━━ COMPONENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /**
