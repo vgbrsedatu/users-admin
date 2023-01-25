@@ -138,7 +138,7 @@ const useUser = uid => {
         dispatch(actions.SET_LOADING(false));
       })
       .catch(err => {
-        dispatch(actions.SET_ERROR, err.message);
+        dispatch(actions.SET_ERROR(err.message));
       });
   }, [uid]);
 
