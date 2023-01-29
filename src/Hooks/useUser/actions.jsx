@@ -14,13 +14,12 @@ import * as types from './types';
  * Update the `success` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_SUCCESS = payload => ({
+const SET_SUCCESS = value => ({
   type: types.SET_SUCCESS,
-  payload,
+  payload: value,
 });
 
 /**
@@ -29,13 +28,12 @@ const SET_SUCCESS = payload => ({
  * Update the `loading` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_LOADING = payload => ({
+const SET_LOADING = value => ({
   type: types.SET_LOADING,
-  payload,
+  payload: value,
 });
 
 /**
@@ -44,13 +42,12 @@ const SET_LOADING = payload => ({
  * Update the `error` property in the `state`, the `payload` parameter must
  * be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ERROR = payload => ({
+const SET_ERROR = value => ({
   type: types.SET_ERROR,
-  payload,
+  payload: value,
 });
 
 /**
@@ -59,13 +56,12 @@ const SET_ERROR = payload => ({
  * Update the `created` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_CREATED = payload => ({
+const SET_CREATED = value => ({
   type: types.SET_CREATED,
-  payload,
+  payload: value,
 });
 
 /**
@@ -74,13 +70,12 @@ const SET_CREATED = payload => ({
  * Update the `updated` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_UPDATED = payload => ({
+const SET_UPDATED = value => ({
   type: types.SET_UPDATED,
-  payload,
+  payload: value,
 });
 
 /**
@@ -89,13 +84,12 @@ const SET_UPDATED = payload => ({
  * Update the `deleted` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_DELETED = payload => ({
+const SET_DELETED = value => ({
   type: types.SET_DELETED,
-  payload,
+  payload: value,
 });
 
 /**
@@ -104,13 +98,12 @@ const SET_DELETED = payload => ({
  * Update the `user` property in the `state`, the `payload` parameter must
  * be `Object`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {object} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_USER = payload => ({
+const SET_USER = value => ({
   type: types.SET_USER,
-  payload,
+  payload: value,
 });
 
 /**
@@ -119,13 +112,12 @@ const SET_USER = payload => ({
  * Update the `name` property in the `state`, the `payload` parameter must be
  * `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_NAME = payload => ({
+const SET_NAME = value => ({
   type: types.SET_NAME,
-  payload,
+  payload: value,
 });
 
 /**
@@ -134,13 +126,12 @@ const SET_NAME = payload => ({
  * Update the `email` property in the `state`, the `payload` parameter must be
  * `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {boolean} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_EMAIL = payload => ({
+const SET_EMAIL = value => ({
   type: types.SET_EMAIL,
-  payload,
+  payload: value,
 });
 
 /**
@@ -149,13 +140,12 @@ const SET_EMAIL = payload => ({
  * Update the `password` property in the `state`, the `payload` parameter must
  * be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {boolean} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_PASSWORD = payload => ({
+const SET_PASSWORD = value => ({
   type: types.SET_PASSWORD,
-  payload,
+  payload: value,
 });
 
 /**
@@ -164,13 +154,12 @@ const SET_PASSWORD = payload => ({
  * Update the `phone` property in the `state`, the `payload` parameter must be
  * `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_PHONE = payload => ({
+const SET_PHONE = value => ({
   type: types.SET_PHONE,
-  payload,
+  payload: value,
 });
 
 /**
@@ -179,13 +168,12 @@ const SET_PHONE = payload => ({
  * Update the `photo` property in the `state`, the `payload` parameter must be
  * `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_PHOTO = payload => ({
+const SET_PHOTO = value => ({
   type: types.SET_PHOTO,
-  payload,
+  payload: value,
 });
 
 /**
@@ -194,13 +182,12 @@ const SET_PHOTO = payload => ({
  * Update the `verified` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: boolean }} Type of action to be executed in the reducer.
  */
-const SET_VERIFIED = payload => ({
+const SET_VERIFIED = value => ({
   type: types.SET_VERIFIED,
-  payload,
+  payload: value === 'true',
 });
 
 /**
@@ -209,13 +196,12 @@ const SET_VERIFIED = payload => ({
  * Update the `disabled` property in the `state`, the `payload` parameter must
  * be `boolean`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {boolean} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: boolean }} Type of action to be executed in the reducer.
  */
-const SET_DISABLED = payload => ({
+const SET_DISABLED = value => ({
   type: types.SET_DISABLED,
-  payload,
+  payload: value === 'true',
 });
 
 /**
@@ -224,13 +210,12 @@ const SET_DISABLED = payload => ({
  * Update the `role` property in the `state`, the `payload` parameter must be
  * `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ROLE = payload => ({
+const SET_ROLE = value => ({
   type: types.SET_ROLE,
-  payload,
+  payload: value,
 });
 
 /**
@@ -239,13 +224,12 @@ const SET_ROLE = payload => ({
  * Update the `company.name` property in the `state`, the `payload` parameter
  * must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_COMPANY_NAME = payload => ({
+const SET_COMPANY_NAME = value => ({
   type: types.SET_COMPANY_NAME,
-  payload,
+  payload: value,
 });
 
 /**
@@ -254,13 +238,12 @@ const SET_COMPANY_NAME = payload => ({
  * Update the `company.title` property in the `state`, the `payload` parameter
  * must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_COMPANY_TITLE = payload => ({
+const SET_COMPANY_TITLE = value => ({
   type: types.SET_COMPANY_TITLE,
-  payload,
+  payload: value,
 });
 
 /**
@@ -269,13 +252,12 @@ const SET_COMPANY_TITLE = payload => ({
  * Update the `company.location` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_COMPANY_LOCATION = payload => ({
+const SET_COMPANY_LOCATION = value => ({
   type: types.SET_COMPANY_LOCATION,
-  payload,
+  payload: value,
 });
 
 /**
@@ -284,28 +266,26 @@ const SET_COMPANY_LOCATION = payload => ({
  * Update the `company.department` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_COMPANY_DEPARTMENT = payload => ({
+const SET_COMPANY_DEPARTMENT = value => ({
   type: types.SET_COMPANY_DEPARTMENT,
-  payload,
+  payload: value,
 });
 
 /**
  * Auxiliary function for the reducer.
  *
- * Update the `error` property in the `state`, the `payload` parameter must
+ * Update the `address.street` property in the `state`, the `payload` parameter must
  * be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_STREET = payload => ({
+const SET_ADDRESS_STREET = value => ({
   type: types.SET_ADDRESS_STREET,
-  payload,
+  payload: value,
 });
 
 /**
@@ -314,13 +294,12 @@ const SET_ADDRESS_STREET = payload => ({
  * Update the `address.number` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_NUMBER = payload => ({
+const SET_ADDRESS_NUMBER = value => ({
   type: types.SET_ADDRESS_NUMBER,
-  payload,
+  payload: value,
 });
 
 /**
@@ -329,13 +308,12 @@ const SET_ADDRESS_NUMBER = payload => ({
  * Update the `address.settlement` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_SETTLEMENT = payload => ({
+const SET_ADDRESS_SETTLEMENT = value => ({
   type: types.SET_ADDRESS_SETTLEMENT,
-  payload,
+  payload: value,
 });
 
 /**
@@ -344,13 +322,12 @@ const SET_ADDRESS_SETTLEMENT = payload => ({
  * Update the `address.postal` property in the `state`, the `payload` parameter
  * must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_POSTAL = payload => ({
+const SET_ADDRESS_POSTAL = value => ({
   type: types.SET_ADDRESS_POSTAL,
-  payload,
+  payload: value,
 });
 
 /**
@@ -359,13 +336,12 @@ const SET_ADDRESS_POSTAL = payload => ({
  * Update the `address.municipality` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_MUNICIPALITY = payload => ({
+const SET_ADDRESS_MUNICIPALITY = value => ({
   type: types.SET_ADDRESS_MUNICIPALITY,
-  payload,
+  payload: value,
 });
 
 /**
@@ -374,13 +350,12 @@ const SET_ADDRESS_MUNICIPALITY = payload => ({
  * Update the `address.locality` property in the `state`, the `payload`
  * parameter must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_LOCALITY = payload => ({
+const SET_ADDRESS_LOCALITY = value => ({
   type: types.SET_ADDRESS_LOCALITY,
-  payload,
+  payload: value,
 });
 
 /**
@@ -389,13 +364,12 @@ const SET_ADDRESS_LOCALITY = payload => ({
  * Update the `address.state` property in the `state`, the `payload` parameter
  * must be `string`.
  *
- * @param {object} payload
- * @param {string} payload.type - Type of action to be executed in the reducer.
- * @param {string} payload.payload - The new value that the state will take.
+ * @param {string} value - The new value that the state will take.
+ * @returns {{ type: string, payload: string }} Type of action to be executed in the reducer.
  */
-const SET_ADDRESS_STATE = payload => ({
+const SET_ADDRESS_STATE = value => ({
   type: types.SET_ADDRESS_STATE,
-  payload,
+  payload: value,
 });
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
