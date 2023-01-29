@@ -5,10 +5,11 @@
 
 // ━━ IMPORT MODULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // » IMPORT REACT MODULES
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useCallback } from 'react';
 
 // » IMPORT MODULES
 import { getUser } from '../../services/firebase/api/users';
+import names from './names';
 import reducer from './reducer';
 import * as actions from './actions';
 
@@ -17,8 +18,8 @@ import * as actions from './actions';
  * An `object` with user information.
  *
  * @typedef   {object}  user
- * @property  {string}  email                 - User email.
  * @property  {string}  name                  - User name.
+ * @property  {string}  email                 - User email.
  * @property  {string}  password              - User password.
  * @property  {string}  phone                 - User phone.
  * @property  {boolean} verified              - User emailVerified.
@@ -93,12 +94,12 @@ const initial = {
   user: {
     email: '',
     name: '',
-    password: '',
+    password: null,
     photo: null,
     phone: '',
     role: 'subscriber',
-    verified: 'false',
-    disabled: 'false',
+    verified: false,
+    disabled: false,
     company: {
       name: '',
       department: '',
@@ -131,7 +132,7 @@ const initial = {
 const useUser = uid => {
   const [state, dispatch] = useReducer(reducer, initial);
 
-  useEffect(() => {
+  const chargeUser = useCallback(() => {
     getUser(uid)
       .then(response => {
         dispatch(actions.SET_USER(response));
@@ -141,6 +142,10 @@ const useUser = uid => {
         dispatch(actions.SET_ERROR(err.message));
       });
   }, [uid]);
+
+  useEffect(() => {
+    if (uid !== undefined) chargeUser(uid);
+  }, [uid, chargeUser]);
 
   useEffect(() => {
     const handleEvent = (event, payload) => {
@@ -188,7 +193,8 @@ const useUser = uid => {
     };
   }, []);
 
-  const dispacher = (name, value) => {
+  const dispacher = (inputName, value) => {
+    const name = names[inputName];
     const action = actions[name];
     dispatch(action(value));
   };
