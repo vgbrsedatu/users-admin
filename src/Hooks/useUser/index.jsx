@@ -60,23 +60,10 @@ import * as actions from './actions';
  */
 
 /**
- * Function for managing inputs.
- *
- * @typedef   {({ name, type, value } :
- *  { name: string, type: string, value: any }) => {
- *    name: string,
- *    type: string,
- *    value: any,
- *    onChange: () => void,
- *  }} fields
- */
-
-/**
  * The returns value from `useUser`
  *
  * @typedef   {object}              userHook
  * @property  {dispacher}           dispacher         - Auxiliary function for the reducer.
- * @property  {fields}              fields            - Function for managing inputs.
  * @property  {()=>void}            createUser        - Function to create a user.
  * @property  {()=>void}            updatedUser       - Function to update a user.
  * @property  {(uid:string)=>void}  deleteUser        - Function to delete a user.
@@ -199,20 +186,6 @@ const useUser = uid => {
     dispatch(action(value));
   };
 
-  const fields = ({ name, type, value }) => {
-    const onChange = e => {
-      const { name: NAME, value: VALUE } = e.target;
-      const action = `SET_${NAME}`;
-      dispacher(action, VALUE);
-    };
-    return {
-      name,
-      type: type || 'text',
-      value,
-      onChange,
-    };
-  };
-
   const createUser = () => {
     window.appRuntime.send('user:create', state.user);
   };
@@ -229,7 +202,7 @@ const useUser = uid => {
     window.appRuntime.send('user:password', { id, password });
   };
 
-  return { dispacher, fields, createUser, updatedUser, deleteUser, updatePassword, state };
+  return { dispacher, createUser, updatedUser, deleteUser, updatePassword, state };
 };
 
 // ━━ EXPORT MODULE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
