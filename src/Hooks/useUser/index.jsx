@@ -79,9 +79,9 @@ import * as actions from './actions';
  */
 const initial = {
   user: {
-    email: '',
     name: '',
-    password: null,
+    email: '',
+    password: '',
     photo: null,
     phone: '',
     role: 'subscriber',
