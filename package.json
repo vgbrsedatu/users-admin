@@ -1,6 +1,6 @@
 {
   "name": "users-admin",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Application to administer and manage users and their roles",
   "productName": "UsersAdmin",
   "keywords": [
